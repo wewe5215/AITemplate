@@ -1,0 +1,14 @@
+# reshape_0
+(Tensor(name=reshape_0_0, shape=[8, 8])) 
+= reshape()(
+Tensor(name=x0, shape=[2, 4, 8]), shape=[8, 8])
+
+# reshape_1
+(Tensor(name=reshape_1_0, shape=[2, 4, 8])) 
+= reshape()(
+Tensor(name=reshape_0_0, shape=[8, 8]), shape=[2, 4, 8])
+
+# reduce_sum_2
+(Tensor(name=y, shape=[2, 8])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=reshape_1_0, shape=[2, 4, 8]))

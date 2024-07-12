@@ -1,0 +1,19 @@
+# reshape_0
+(Tensor(name=reshape_0_0, shape=[8, 8])) 
+= reshape()(
+Tensor(name=x0, shape=[2, 4, 8]), shape=[8, 8])
+
+# unsqueeze_1
+(Tensor(name=unsqueeze_1_0, shape=[8, 1, 8])) 
+= unsqueeze(dim=1)(
+Tensor(name=reshape_0_0, shape=[8, 8]))
+
+# reshape_2
+(Tensor(name=reshape_2_0, shape=[8, 1, 2, 4])) 
+= reshape()(
+Tensor(name=unsqueeze_1_0, shape=[8, 1, 8]), shape=[8, 1, 2, 4])
+
+# reduce_sum_3
+(Tensor(name=y, shape=[8, 2, 4])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=reshape_2_0, shape=[8, 1, 2, 4]))

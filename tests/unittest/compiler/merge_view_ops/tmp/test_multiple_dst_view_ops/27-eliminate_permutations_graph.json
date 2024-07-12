@@ -1,0 +1,662 @@
+{
+  "Tensors": [
+    {
+      "name": "x0",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "x0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              2
+            ],
+            "symbolic_value": 2
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "reshape_5",
+        "reshape_6"
+      ],
+      "dtype": "float",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "reshape_5_0",
+      "depth": 1,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "unsqueeze_1_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              1
+            ],
+            "symbolic_value": 1
+          }
+        },
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        }
+      ],
+      "src_ops": [
+        "reshape_5"
+      ],
+      "dst_ops": [
+        "reduce_sum_3"
+      ],
+      "dtype": "float",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": {
+        "name": "x0",
+        "depth": 0,
+        "nop": false,
+        "shape": [
+          {
+            "_attrs": {
+              "name": "x0_dim_0",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                2
+              ],
+              "symbolic_value": 2
+            }
+          },
+          {
+            "_attrs": {
+              "name": "x0_dim_1",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                4
+              ],
+              "symbolic_value": 4
+            }
+          },
+          {
+            "_attrs": {
+              "name": "x0_dim_2",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                8
+              ],
+              "symbolic_value": 8
+            }
+          }
+        ],
+        "src_ops": [],
+        "dst_ops": [
+          "reshape_5",
+          "reshape_6"
+        ],
+        "dtype": "float",
+        "is_output": false,
+        "is_input": true,
+        "is_param": false,
+        "is_internal_constant": false,
+        "skip_constant_folding": false,
+        "has_output_aliases": false,
+        "external_tensor": null,
+        "is_view_of": null,
+        "value": null,
+        "offset": null,
+        "data": null,
+        "constant_folding_output_idx": null,
+        "check_nan_and_inf": false,
+        "check_outputs": false,
+        "original_name": null
+      },
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "reshape_6_0",
+      "depth": 1,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "unsqueeze_2_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              1
+            ],
+            "symbolic_value": 1
+          }
+        }
+      ],
+      "src_ops": [
+        "reshape_6"
+      ],
+      "dst_ops": [
+        "reduce_sum_4"
+      ],
+      "dtype": "float",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": {
+        "name": "x0",
+        "depth": 0,
+        "nop": false,
+        "shape": [
+          {
+            "_attrs": {
+              "name": "x0_dim_0",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                2
+              ],
+              "symbolic_value": 2
+            }
+          },
+          {
+            "_attrs": {
+              "name": "x0_dim_1",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                4
+              ],
+              "symbolic_value": 4
+            }
+          },
+          {
+            "_attrs": {
+              "name": "x0_dim_2",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                8
+              ],
+              "symbolic_value": 8
+            }
+          }
+        ],
+        "src_ops": [],
+        "dst_ops": [
+          "reshape_5",
+          "reshape_6"
+        ],
+        "dtype": "float",
+        "is_output": false,
+        "is_input": true,
+        "is_param": false,
+        "is_internal_constant": false,
+        "skip_constant_folding": false,
+        "has_output_aliases": false,
+        "external_tensor": null,
+        "is_view_of": null,
+        "value": null,
+        "offset": null,
+        "data": null,
+        "constant_folding_output_idx": null,
+        "check_nan_and_inf": false,
+        "check_outputs": false,
+        "original_name": null
+      },
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "y0",
+      "depth": 3,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        }
+      ],
+      "src_ops": [
+        "reduce_sum_3"
+      ],
+      "dst_ops": [],
+      "dtype": "float",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "y1",
+      "depth": 3,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        }
+      ],
+      "src_ops": [
+        "reduce_sum_4"
+      ],
+      "dst_ops": [],
+      "dtype": "float",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    }
+  ],
+  "Operators": [
+    {
+      "_original_op_name": "reshape_5",
+      "name": "reshape_5",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "x0"
+      ],
+      "has_profiler": false,
+      "unknown_idx": -1,
+      "op": "reshape",
+      "shape": [
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "unsqueeze_1_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              1
+            ],
+            "symbolic_value": 1
+          }
+        },
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        }
+      ],
+      "is_intvar": false,
+      "outputs": [
+        "reshape_5_0"
+      ],
+      "original_name": "reshape_5"
+    },
+    {
+      "_original_op_name": "reshape_6",
+      "name": "reshape_6",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "x0"
+      ],
+      "has_profiler": false,
+      "unknown_idx": -1,
+      "op": "reshape",
+      "shape": [
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "reshape_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "unsqueeze_2_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              1
+            ],
+            "symbolic_value": 1
+          }
+        }
+      ],
+      "is_intvar": false,
+      "outputs": [
+        "reshape_6_0"
+      ],
+      "original_name": "reshape_6"
+    },
+    {
+      "_original_op_name": "reduce_sum_3",
+      "name": "reduce_sum_3",
+      "depth": 2,
+      "nop": false,
+      "inputs": [
+        "reshape_5_0"
+      ],
+      "has_profiler": false,
+      "op": "reduce_sum",
+      "reduction_axes": [
+        1
+      ],
+      "keepdim": false,
+      "output_type": null,
+      "outputs": [
+        "y0"
+      ],
+      "output_accessors": [
+        {
+          "offset": 0,
+          "original_shapes": [
+            {
+              "_attrs": {
+                "name": "reshape_0_0_dim_0",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  8
+                ],
+                "symbolic_value": 8
+              }
+            },
+            {
+              "_attrs": {
+                "name": "reshape_0_0_dim_1",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  8
+                ],
+                "symbolic_value": 8
+              }
+            }
+          ],
+          "tensor_dtype": "float",
+          "is_contiguous": true,
+          "is_from_strided_tensor": false,
+          "stride_dim": null,
+          "actual_shapes": null,
+          "original_total_elements_from_stride_dim": null,
+          "actual_total_elements_from_stride_dim": null,
+          "_dim_mapping": [
+            [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ]
+          ]
+        }
+      ],
+      "workspace": 0,
+      "original_name": "reduce_sum_3"
+    },
+    {
+      "_original_op_name": "reduce_sum_4",
+      "name": "reduce_sum_4",
+      "depth": 2,
+      "nop": false,
+      "inputs": [
+        "reshape_6_0"
+      ],
+      "has_profiler": false,
+      "op": "reduce_sum",
+      "reduction_axes": [
+        2
+      ],
+      "keepdim": false,
+      "output_type": null,
+      "outputs": [
+        "y1"
+      ],
+      "output_accessors": [
+        {
+          "offset": 0,
+          "original_shapes": [
+            {
+              "_attrs": {
+                "name": "reshape_0_0_dim_0",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  8
+                ],
+                "symbolic_value": 8
+              }
+            },
+            {
+              "_attrs": {
+                "name": "reshape_0_0_dim_1",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  8
+                ],
+                "symbolic_value": 8
+              }
+            }
+          ],
+          "tensor_dtype": "float",
+          "is_contiguous": true,
+          "is_from_strided_tensor": false,
+          "stride_dim": null,
+          "actual_shapes": null,
+          "original_total_elements_from_stride_dim": null,
+          "actual_total_elements_from_stride_dim": null,
+          "_dim_mapping": [
+            [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ]
+          ]
+        }
+      ],
+      "original_name": "reduce_sum_4"
+    }
+  ]
+}
