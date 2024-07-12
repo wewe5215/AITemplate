@@ -1,0 +1,64 @@
+# concatenate_7
+(Tensor(name=concatenate_7_0, shape=[672, 256])) 
+= concatenate(dim=0)(
+Tensor(name=W0, shape=[512, 256], data=(262144 bytes)), Tensor(name=W1, shape=[128, 256], data=(65536 bytes)), Tensor(name=W2, shape=[32, 256], data=(16384 bytes)))
+
+# concatenate_16
+(Tensor(name=concatenate_16_0, shape=[416, 256])) 
+= concatenate(dim=0)(
+Tensor(name=W3, shape=[32, 256], data=(16384 bytes)), Tensor(name=W4, shape=[128, 256], data=(65536 bytes)), Tensor(name=W5, shape=[256, 256], data=(131072 bytes)))
+
+# gemm_rcr_17
+(Tensor(name=gemm_rcr_17_0, shape=[1024, 416])) 
+= gemm_rcr()(
+Tensor(name=X, shape=[1024, 256]), Tensor(name=concatenate_16_0, shape=[416, 256]))
+
+# split_18
+(Tensor(name=split_18_2, shape=[1024, 32]), Tensor(name=split_18_1, shape=[1024, 128]), Tensor(name=split_18_0, shape=[1024, 256])) 
+= split(split_sizes=[32, 128, 256]], dim=1])(
+Tensor(name=gemm_rcr_17_0, shape=[1024, 416]))
+
+# fused_elementwise_0
+(Tensor(name=output5, shape=[1024, 256])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=split_18_0, shape=[1024, 256]))
+
+# fused_elementwise_1
+(Tensor(name=output4, shape=[1024, 128])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=split_18_1, shape=[1024, 128]))
+
+# fused_elementwise_2
+(Tensor(name=output3, shape=[1024, 32])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=split_18_2, shape=[1024, 32]))
+
+# concatenate_10
+(Tensor(name=concatenate_10_0, shape=[672])) 
+= concatenate(dim=0)(
+Tensor(name=B0, shape=[512], data=(1024 bytes)), Tensor(name=B1, shape=[128], data=(256 bytes)), Tensor(name=B2, shape=[32], data=(64 bytes)))
+
+# gemm_rcr_bias_11
+(Tensor(name=gemm_rcr_bias_11_0, shape=[1024, 672])) 
+= gemm_rcr_bias()(
+Tensor(name=X, shape=[1024, 256]), Tensor(name=concatenate_7_0, shape=[672, 256]), Tensor(name=concatenate_10_0, shape=[672]))
+
+# split_12
+(Tensor(name=split_12_0, shape=[1024, 512]), Tensor(name=elementwise_13_0, shape=[1024, 128]), Tensor(name=elementwise_14_0, shape=[1024, 32])) 
+= split(split_sizes=[512, 128, 32]], dim=1])(
+Tensor(name=gemm_rcr_bias_11_0, shape=[1024, 672]))
+
+# fused_elementwise_3
+(Tensor(name=output0, shape=[1024, 512])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=split_12_0, shape=[1024, 512]))
+
+# fused_elementwise_1
+(Tensor(name=output1, shape=[1024, 128])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=elementwise_13_0, shape=[1024, 128]))
+
+# fused_elementwise_2
+(Tensor(name=output2, shape=[1024, 32])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=elementwise_14_0, shape=[1024, 32]))

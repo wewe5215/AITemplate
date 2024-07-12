@@ -1,0 +1,19 @@
+# fused_elementwise_5
+(Tensor(name=elementwise_0_0, shape=[32, 64, 100]), Tensor(name=elementwise_1_0, shape=[32, 64, 100])) 
+= fused_elementwise(func=[<FuncEnum.SIGMOID: 15>])(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# softmax_2
+(Tensor(name=softmax_2_0, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_0_0, shape=[32, 64, 100]))
+
+# softmax_3
+(Tensor(name=softmax_3_0, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_1_0, shape=[32, 64, 100]))
+
+# fused_elementwise_7
+(Tensor(name=output, shape=[32, 64, 100])) 
+= fused_elementwise(func=[<FuncEnum.ADD: 1>])(
+Tensor(name=softmax_2_0, shape=[32, 64, 100]), Tensor(name=softmax_3_0, shape=[32, 64, 100]))

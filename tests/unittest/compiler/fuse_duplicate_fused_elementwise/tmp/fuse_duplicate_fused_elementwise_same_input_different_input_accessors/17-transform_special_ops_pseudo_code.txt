@@ -1,0 +1,34 @@
+# dynamic_slice_0
+(Tensor(name=dynamic_slice_0_0, shape=[32, 64, 50])) 
+= dynamic_slice(start_indices=[0, 0, 0], end_indices=[32, 64, 50])(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# dynamic_slice_1
+(Tensor(name=dynamic_slice_1_0, shape=[32, 64, 50])) 
+= dynamic_slice(start_indices=[0, 0, 50], end_indices=[32, 64, 100])(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# fused_elementwise_7
+(Tensor(name=elementwise_2_0, shape=[32, 64, 50])) 
+= fused_elementwise(func=[<FuncEnum.SIGMOID: 15>])(
+Tensor(name=dynamic_slice_0_0, shape=[32, 64, 50]))
+
+# fused_elementwise_8
+(Tensor(name=elementwise_3_0, shape=[32, 64, 50])) 
+= fused_elementwise(func=[<FuncEnum.SIGMOID: 15>])(
+Tensor(name=dynamic_slice_1_0, shape=[32, 64, 50]))
+
+# softmax_4
+(Tensor(name=softmax_4_0, shape=[32, 64, 50])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_2_0, shape=[32, 64, 50]))
+
+# softmax_5
+(Tensor(name=softmax_5_0, shape=[32, 64, 50])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_3_0, shape=[32, 64, 50]))
+
+# fused_elementwise_9
+(Tensor(name=output, shape=[32, 64, 50])) 
+= fused_elementwise(func=[<FuncEnum.ADD: 1>])(
+Tensor(name=softmax_4_0, shape=[32, 64, 50]), Tensor(name=softmax_5_0, shape=[32, 64, 50]))

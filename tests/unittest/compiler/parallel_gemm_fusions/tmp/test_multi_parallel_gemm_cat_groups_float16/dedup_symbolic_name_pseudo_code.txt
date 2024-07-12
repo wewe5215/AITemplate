@@ -1,0 +1,49 @@
+# fused_elementwise_13
+(Tensor(name=elementwise_0_0, shape=[256, 120])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_2, shape=[256, 120]))
+
+# fused_elementwise_14
+(Tensor(name=concatenate_19_0, shape=[256, 144])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_3, shape=[256, 72]))
+
+# fused_elementwise_15
+(Tensor(name=concatenate_19_0, shape=[256, 144])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_4, shape=[256, 72]))
+
+# fused_elementwise_16
+(Tensor(name=concatenate_21_0, shape=[256, 128])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_0, shape=[256, 64]))
+
+# fused_elementwise_17
+(Tensor(name=concatenate_21_0, shape=[256, 128])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_1, shape=[256, 64]))
+
+# fused_elementwise_18
+(Tensor(name=elementwise_5_0, shape=[256, 64])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_5, shape=[256, 64]))
+
+# perm102_bmm_rrr_bias_31
+(Tensor(name=y, shape=[256, 768])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=concatenate_21_0, shape=[256, 128]), Tensor(name=permute021_28_0, shape=[2, 64, 128]), Tensor(name=concatenate_29_0, shape=[256]))
+
+# gemm_rcr_bias_8
+(Tensor(name=y, shape=[256, 768])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_0_0, shape=[256, 120]), Tensor(name=w_2, shape=[128, 120], data=(30720 bytes)), Tensor(name=b_2, shape=[128], data=(256 bytes)))
+
+# perm102_bmm_rrr_bias_35
+(Tensor(name=y, shape=[256, 768])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=concatenate_19_0, shape=[256, 144]), Tensor(name=permute021_25_0, shape=[2, 72, 128]), Tensor(name=concatenate_33_0, shape=[256]))
+
+# gemm_rcr_bias_11
+(Tensor(name=y, shape=[256, 768])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_5_0, shape=[256, 64]), Tensor(name=w_5, shape=[128, 64], data=(16384 bytes)), Tensor(name=b_5, shape=[128], data=(256 bytes)))

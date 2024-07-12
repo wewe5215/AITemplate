@@ -1,0 +1,76 @@
+# permute021_5
+(Tensor(name=permute021_5_0, shape=[4, 64, 32])) 
+= permute021()(
+Tensor(name=W, shape=[4, 32, 64], data=(32768 bytes)))
+
+# concatenate_25
+(Tensor(name=concatenate_25_0, shape=[128, 64])) 
+= concatenate(dim=0)(
+Tensor(name=W0, shape=[32, 64], data=(8192 bytes)),
+Tensor(name=W1, shape=[32, 64], data=(8192 bytes)),
+Tensor(name=W2, shape=[32, 64], data=(8192 bytes)),
+Tensor(name=W3, shape=[32, 64], data=(8192 bytes)))
+
+# permute021_27
+(Tensor(name=permute021_27_0, shape=[4, 64, 32])) 
+= permute021()(
+Tensor(name=concatenate_25_0, shape=[128, 64]))
+
+# concatenate_28
+(Tensor(name=concatenate_28_0, shape=[128, 64])) 
+= concatenate(dim=0)(
+Tensor(name=W4, shape=[32, 64], data=(8192 bytes)),
+Tensor(name=W5, shape=[32, 64], data=(8192 bytes)),
+Tensor(name=W6, shape=[32, 64], data=(8192 bytes)),
+Tensor(name=W7, shape=[32, 64], data=(8192 bytes)))
+
+# permute021_30
+(Tensor(name=permute021_30_0, shape=[4, 64, 32])) 
+= permute021()(
+Tensor(name=concatenate_28_0, shape=[128, 64]))
+
+# concatenate_31
+(Tensor(name=concatenate_31_0, shape=[128])) 
+= concatenate(dim=0)(
+Tensor(name=B0, shape=[32], data=(128 bytes)),
+Tensor(name=B1, shape=[32], data=(128 bytes)),
+Tensor(name=B2, shape=[32], data=(128 bytes)),
+Tensor(name=B3, shape=[32], data=(128 bytes)))
+
+# concatenate_35
+(Tensor(name=concatenate_35_0, shape=[128])) 
+= concatenate(dim=0)(
+Tensor(name=B4, shape=[32], data=(128 bytes)),
+Tensor(name=B5, shape=[32], data=(128 bytes)),
+Tensor(name=B6, shape=[32], data=(128 bytes)),
+Tensor(name=B7, shape=[32], data=(128 bytes)))
+
+# perm102_bmm_rrr_bias_33
+(Tensor(name=output0, shape=[input_batch, 768])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=X1, shape=[input_batch, 256]), Tensor(name=permute021_27_0, shape=[4, 64, 32]), Tensor(name=concatenate_31_0, shape=[128]))
+
+# perm102_bmm_rcr_3
+(Tensor(name=output0, shape=[input_batch, 768])) 
+= perm102_bmm_rcr()(
+Tensor(name=X1, shape=[input_batch, 256]), Tensor(name=W, shape=[4, 32, 64], data=(32768 bytes)))
+
+# perm102_bmm_rcr_bias_8
+(Tensor(name=output0, shape=[input_batch, 768])) 
+= perm102_bmm_rcr_bias()(
+Tensor(name=X1, shape=[input_batch, 256]), Tensor(name=W, shape=[4, 32, 64], data=(32768 bytes)), Tensor(name=B, shape=[4, 32], data=(512 bytes)))
+
+# perm102_bmm_rrr_6
+(Tensor(name=output0, shape=[input_batch, 768])) 
+= perm102_bmm_rrr()(
+Tensor(name=X1, shape=[input_batch, 256]), Tensor(name=permute021_5_0, shape=[4, 64, 32]))
+
+# perm102_bmm_rrr_bias_9
+(Tensor(name=output0, shape=[input_batch, 768])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=X1, shape=[input_batch, 256]), Tensor(name=permute021_5_0, shape=[4, 64, 32]), Tensor(name=B, shape=[4, 32], data=(512 bytes)))
+
+# perm102_bmm_rrr_bias_37
+(Tensor(name=output0, shape=[input_batch, 768])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=X2, shape=[input_batch, 256]), Tensor(name=permute021_30_0, shape=[4, 64, 32]), Tensor(name=concatenate_35_0, shape=[128]))

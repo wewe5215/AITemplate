@@ -1,0 +1,14 @@
+# elementwise_0
+(Tensor(name=elementwise_0_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.SIGMOID)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# elementwise_1
+(Tensor(name=elementwise_1_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.SIGMOID)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# concatenate_2
+(Tensor(name=output, shape=[64, 64, 100])) 
+= concatenate(dim=0)(
+Tensor(name=elementwise_0_0, shape=[32, 64, 100]), Tensor(name=elementwise_1_0, shape=[32, 64, 100]))

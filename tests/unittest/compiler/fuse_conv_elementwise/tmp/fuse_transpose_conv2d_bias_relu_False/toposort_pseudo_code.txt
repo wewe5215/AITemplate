@@ -1,0 +1,9 @@
+# None
+(Tensor(name=None, shape=[4, 28, 28, 256])) 
+= transposed_conv2d_bias(dilate=1, group=1, pad=0, stride=2)(
+Tensor(name=input_0, shape=[4, 14, 14, 256]), Tensor(name=input_1, shape=[256, 2, 2, 256]), Tensor(name=input_2, shape=[256]))
+
+# None
+(Tensor(name=output_0, shape=[4, 28, 28, 256])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=None, shape=[4, 28, 28, 256]))

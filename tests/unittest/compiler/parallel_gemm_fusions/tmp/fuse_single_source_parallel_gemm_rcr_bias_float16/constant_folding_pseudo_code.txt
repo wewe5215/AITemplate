@@ -1,0 +1,24 @@
+# gemm_rcr_bias_8
+(Tensor(name=gemm_rcr_bias_8_0, shape=[1024, 316])) 
+= gemm_rcr_bias()(
+Tensor(name=X, shape=[1024, 256]), Tensor(name=concatenate_6_0, shape=[316, 256]), Tensor(name=concatenate_7_0, shape=[316]))
+
+# split_9
+(Tensor(name=elementwise_10_0, shape=[1024, 36]), Tensor(name=elementwise_11_0, shape=[1024, 24]), Tensor(name=split_9_0, shape=[1024, 256])) 
+= split(split_sizes=[36, 24, 256]], dim=1])(
+Tensor(name=gemm_rcr_bias_8_0, shape=[1024, 316]))
+
+# fused_elementwise_0
+(Tensor(name=output2, shape=[1024, 256])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=split_9_0, shape=[1024, 256]))
+
+# fused_elementwise_1
+(Tensor(name=output0, shape=[1024, 36])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=elementwise_10_0, shape=[1024, 36]))
+
+# fused_elementwise_2
+(Tensor(name=output1, shape=[1024, 24])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=elementwise_11_0, shape=[1024, 24]))

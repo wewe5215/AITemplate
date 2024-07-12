@@ -1,0 +1,121 @@
+# None
+(Tensor(name=None, shape=[input_batch, 4, 64])) 
+= reshape()(
+Tensor(name=X1, shape=[input_batch, 256]), shape=[-1, 4, 64])
+
+# None
+(Tensor(name=None, shape=[input_batch, 64]),
+Tensor(name=None, shape=[input_batch, 64]),
+Tensor(name=None, shape=[input_batch, 64]),
+Tensor(name=None, shape=[input_batch, 64])) 
+= split(split_sizes=[64, 64, 64, 64]], dim=1])(
+Tensor(name=X1, shape=[input_batch, 256]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 64]),
+Tensor(name=None, shape=[input_batch, 64]),
+Tensor(name=None, shape=[input_batch, 64]),
+Tensor(name=None, shape=[input_batch, 64])) 
+= split(split_sizes=[64, 64, 64, 64]], dim=1])(
+Tensor(name=X2, shape=[input_batch, 256]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 4, 32])) 
+= perm102_bmm_rcr()(
+Tensor(name=None, shape=[input_batch, 4, 64]), Tensor(name=W, shape=[4, 32, 64]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 128])) 
+= reshape()(
+Tensor(name=None, shape=[input_batch, 4, 32]), shape=[input_batch, 128])
+
+# None
+(Tensor(name=None, shape=[4, 64, 32])) 
+= permute021()(
+Tensor(name=W, shape=[4, 32, 64]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 4, 32])) 
+= perm102_bmm_rrr()(
+Tensor(name=None, shape=[input_batch, 4, 64]), Tensor(name=None, shape=[4, 64, 32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 128])) 
+= reshape()(
+Tensor(name=None, shape=[input_batch, 4, 32]), shape=[input_batch, 128])
+
+# None
+(Tensor(name=None, shape=[input_batch, 4, 32])) 
+= perm102_bmm_rcr_bias()(
+Tensor(name=None, shape=[input_batch, 4, 64]), Tensor(name=W, shape=[4, 32, 64]), Tensor(name=B, shape=[4, 32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 4, 32])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=None, shape=[input_batch, 4, 64]), Tensor(name=None, shape=[4, 64, 32]), Tensor(name=B, shape=[4, 32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 128])) 
+= reshape()(
+Tensor(name=None, shape=[input_batch, 4, 32]), shape=[input_batch, 128])
+
+# None
+(Tensor(name=None, shape=[input_batch, 128])) 
+= reshape()(
+Tensor(name=None, shape=[input_batch, 4, 32]), shape=[input_batch, 128])
+
+# None
+(Tensor(name=None, shape=[input_batch, 32])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[input_batch, 64]), Tensor(name=W0, shape=[32, 64]), Tensor(name=B0, shape=[32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 32])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[input_batch, 64]), Tensor(name=W1, shape=[32, 64]), Tensor(name=B1, shape=[32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 32])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[input_batch, 64]), Tensor(name=W2, shape=[32, 64]), Tensor(name=B2, shape=[32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 32])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[input_batch, 64]), Tensor(name=W3, shape=[32, 64]), Tensor(name=B3, shape=[32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 32])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[input_batch, 64]), Tensor(name=W4, shape=[32, 64]), Tensor(name=B4, shape=[32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 32])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[input_batch, 64]), Tensor(name=W5, shape=[32, 64]), Tensor(name=B5, shape=[32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 32])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[input_batch, 64]), Tensor(name=W6, shape=[32, 64]), Tensor(name=B6, shape=[32]))
+
+# None
+(Tensor(name=None, shape=[input_batch, 32])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[input_batch, 64]), Tensor(name=W7, shape=[32, 64]), Tensor(name=B7, shape=[32]))
+
+# None
+(Tensor(name=output0, shape=[input_batch, 768])) 
+= concatenate(dim=1)(
+Tensor(name=None, shape=[input_batch, 32]),
+Tensor(name=None, shape=[input_batch, 32]),
+Tensor(name=None, shape=[input_batch, 32]),
+Tensor(name=None, shape=[input_batch, 32]),
+Tensor(name=None, shape=[input_batch, 128]),
+Tensor(name=None, shape=[input_batch, 128]),
+Tensor(name=None, shape=[input_batch, 128]),
+Tensor(name=None, shape=[input_batch, 128]),
+Tensor(name=None, shape=[input_batch, 32]),
+Tensor(name=None, shape=[input_batch, 32]),
+Tensor(name=None, shape=[input_batch, 32]),
+Tensor(name=None, shape=[input_batch, 32]))

@@ -1,0 +1,39 @@
+# elementwise_0
+(Tensor(name=elementwise_0_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# elementwise_1
+(Tensor(name=elementwise_1_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.GELU)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# elementwise_2
+(Tensor(name=elementwise_2_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.GELU)(
+Tensor(name=input_z, shape=[32, 64, 100]))
+
+# softmax_3
+(Tensor(name=softmax_3_0, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_0_0, shape=[32, 64, 100]))
+
+# softmax_4
+(Tensor(name=softmax_4_0, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_1_0, shape=[32, 64, 100]))
+
+# softmax_5
+(Tensor(name=softmax_5_0, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_2_0, shape=[32, 64, 100]))
+
+# elementwise_6
+(Tensor(name=elementwise_6_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=softmax_3_0, shape=[32, 64, 100]), Tensor(name=softmax_4_0, shape=[32, 64, 100]))
+
+# elementwise_7
+(Tensor(name=output, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=elementwise_6_0, shape=[32, 64, 100]), Tensor(name=softmax_5_0, shape=[32, 64, 100]))

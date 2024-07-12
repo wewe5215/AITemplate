@@ -1,0 +1,39 @@
+# None
+(Tensor(name=None, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# None
+(Tensor(name=None, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.GELU)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# None
+(Tensor(name=None, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.GELU)(
+Tensor(name=input_z, shape=[32, 64, 100]))
+
+# None
+(Tensor(name=None, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=None, shape=[32, 64, 100]))
+
+# None
+(Tensor(name=None, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=None, shape=[32, 64, 100]))
+
+# None
+(Tensor(name=None, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=None, shape=[32, 64, 100]))
+
+# None
+(Tensor(name=None, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[32, 64, 100]), Tensor(name=None, shape=[32, 64, 100]))
+
+# None
+(Tensor(name=output, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[32, 64, 100]), Tensor(name=None, shape=[32, 64, 100]))

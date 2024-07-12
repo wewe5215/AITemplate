@@ -1,0 +1,386 @@
+{
+  "Tensors": [
+    {
+      "name": "input_0",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              224
+            ],
+            "symbolic_value": 224
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              224
+            ],
+            "symbolic_value": 224
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "conv2d_bias_few_channels_0"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "input_1",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_1_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              7
+            ],
+            "symbolic_value": 7
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              7
+            ],
+            "symbolic_value": 7
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "conv2d_bias_few_channels_0"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "input_2",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_2_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "conv2d_bias_few_channels_0"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "conv2d_bias_few_channels_0_0",
+      "depth": 1,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        },
+        {
+          "_attrs": {
+            "name": "conv2d_bias_few_channels_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              112
+            ],
+            "symbolic_value": 112
+          }
+        },
+        {
+          "_attrs": {
+            "name": "conv2d_bias_few_channels_0_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              112
+            ],
+            "symbolic_value": 112
+          }
+        },
+        {
+          "_attrs": {
+            "name": "conv2d_bias_few_channels_0_0_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        }
+      ],
+      "src_ops": [
+        "conv2d_bias_few_channels_0"
+      ],
+      "dst_ops": [
+        "elementwise_1"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "output_0",
+      "depth": 2,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        },
+        {
+          "_attrs": {
+            "name": "conv2d_bias_few_channels_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              112
+            ],
+            "symbolic_value": 112
+          }
+        },
+        {
+          "_attrs": {
+            "name": "conv2d_bias_few_channels_0_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              112
+            ],
+            "symbolic_value": 112
+          }
+        },
+        {
+          "_attrs": {
+            "name": "conv2d_bias_few_channels_0_0_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        }
+      ],
+      "src_ops": [
+        "elementwise_1"
+      ],
+      "dst_ops": [],
+      "dtype": "float16",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    }
+  ],
+  "Operators": [
+    {
+      "_original_op_name": "conv2d_bias_few_channels_0",
+      "name": "conv2d_bias_few_channels_0",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "input_0",
+        "input_1",
+        "input_2"
+      ],
+      "has_profiler": true,
+      "op": "conv2d_bias_few_channels",
+      "stride": 2,
+      "pad": 3,
+      "dilate": 1,
+      "group": 1,
+      "epilogue_alignment": 8,
+      "epilogue": "LinearCombination",
+      "workspace": 0,
+      "split_k": null,
+      "CO": 64,
+      "KH": 7,
+      "KW": 7,
+      "dim_lower_bounds": [
+        4,
+        224,
+        224,
+        4
+      ],
+      "exec_path": {
+        "NI == 4 && HI == 224 && WI == 224 && CI == 4": ""
+      },
+      "outputs": [
+        "conv2d_bias_few_channels_0_0"
+      ],
+      "original_name": "conv2d_bias_few_channels_0"
+    },
+    {
+      "_original_op_name": "elementwise_1",
+      "name": "elementwise_1",
+      "depth": 1,
+      "nop": false,
+      "inputs": [
+        "conv2d_bias_few_channels_0_0"
+      ],
+      "has_profiler": false,
+      "op": "elementwise",
+      "func": "RELU",
+      "args": [
+        "conv2d_bias_few_channels_0_0"
+      ],
+      "outputs": [
+        "output_0"
+      ],
+      "original_name": "elementwise_1"
+    }
+  ]
+}

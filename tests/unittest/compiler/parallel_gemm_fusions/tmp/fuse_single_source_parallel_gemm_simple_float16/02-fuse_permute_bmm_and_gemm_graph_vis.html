@@ -1,0 +1,1191 @@
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>02-fuse_permute_bmm_and_gemm_graph_vis</title>
+</head>
+
+<style>
+
+html {
+  scroll-behavior: smooth;
+}
+
+* { box-sizing: border-box; }
+body {
+  font: 16px Arial;
+}
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
+.popover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  title-bg: "#0d6efd";
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+}
+
+</style>
+
+
+<body>
+
+<nav id="nav_bar" class="navbar fixed-top bg-light">
+  <div class="container-fluid">
+    <a onclick="back_to_head()" class="navbar-brand">02-fuse_permute_bmm_and_gemm_graph_vis</a>
+    <div class="navbar-right">
+        <div class="autocomplete" style="width:300px;">
+        <input id="name_input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <button class="btn btn-outline-success" onclick="launch_modal_with_input()">Search</button>
+    </div>
+  </div>
+</nav>
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+  <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+
+
+
+  <div id="graph" style="text-align: center;"></div>
+  
+<div class="modal fade" id="W0_modal" tabindex="-1" role="dialog" aria-labelledby="W0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W0_label">W0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [256, 256] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="concatenate_6_modal" tabindex="-1" role="dialog" aria-labelledby="concatenate_6_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="concatenate_6_label">concatenate_6</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> concatenate </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 0 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W1_modal" tabindex="-1" role="dialog" aria-labelledby="W1_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W1_label">W1</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32, 256] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W2_modal" tabindex="-1" role="dialog" aria-labelledby="W2_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W2_label">W2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [128, 256] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="X_modal" tabindex="-1" role="dialog" aria-labelledby="X_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="X_label">X</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [1024, 256] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_7_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_7_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_7_label">gemm_rcr_7</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> gemm_rcr </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 8 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="concatenate_6_0_modal" tabindex="-1" role="dialog" aria-labelledby="concatenate_6_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="concatenate_6_0_label">concatenate_6_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [416, 256] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_7_0_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_7_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_7_0_label">gemm_rcr_7_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [1024, 416] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_8_modal" tabindex="-1" role="dialog" aria-labelledby="split_8_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_8_label">split_8</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> split </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 2 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_8_0_modal" tabindex="-1" role="dialog" aria-labelledby="split_8_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_8_0_label">split_8_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [1024, 256] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="elementwise_9_modal" tabindex="-1" role="dialog" aria-labelledby="elementwise_9_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="elementwise_9_label">elementwise_9</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> elementwise </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="output0_modal" tabindex="-1" role="dialog" aria-labelledby="output0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="output0_label">output0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [1024, 256] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="elementwise_9_0_modal" tabindex="-1" role="dialog" aria-labelledby="elementwise_9_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="elementwise_9_0_label">elementwise_9_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [1024, 128] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="elementwise_10_modal" tabindex="-1" role="dialog" aria-labelledby="elementwise_10_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="elementwise_10_label">elementwise_10</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> elementwise </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="output2_modal" tabindex="-1" role="dialog" aria-labelledby="output2_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="output2_label">output2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [1024, 128] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="elementwise_10_0_modal" tabindex="-1" role="dialog" aria-labelledby="elementwise_10_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="elementwise_10_0_label">elementwise_10_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [1024, 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="elementwise_11_modal" tabindex="-1" role="dialog" aria-labelledby="elementwise_11_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="elementwise_11_label">elementwise_11</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> elementwise </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="output1_modal" tabindex="-1" role="dialog" aria-labelledby="output1_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="output1_label">output1</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [1024, 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float16 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <script>
+  items = [
+  "W0",
+  "concatenate_6",
+  "W1",
+  "W2",
+  "X",
+  "gemm_rcr_7",
+  "concatenate_6_0",
+  "gemm_rcr_7_0",
+  "split_8",
+  "split_8_0",
+  "elementwise_9",
+  "output0",
+  "elementwise_9_0",
+  "elementwise_10",
+  "output2",
+  "elementwise_10_0",
+  "elementwise_11",
+  "output1"
+];
+  function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert an input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+              b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+}
+/*execute a function when someone clicks in the document:*/
+document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+});
+}
+  autocomplete(document.getElementById("name_input"), items);
+
+  function back_to_head() {
+    var modal_id = items[0];
+    var modal = document.getElementById(modal_id);
+    modal.scrollIntoView({ block: 'center',  behavior: 'smooth' });
+  }
+
+  function launch_modal_with_input() {
+    var modal_id = document.getElementById("name_input").value;
+    var modal = document.getElementById(modal_id);
+    if (modal == null) {
+        var msg = "Could not find node with name: " + modal_id;
+        alert(msg);
+    } else {
+        modal.scrollIntoView({ block: 'center',  behavior: 'smooth' });
+        var obj = $("#" + modal_id);
+        var shape = obj.find("polygon:first");
+        var color = shape.attr("stroke");
+        shape.attr("fill", color);
+        for (let i = 0; i < 5; i++) {
+            obj.fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+        }
+        obj.promise().done(function(){
+            shape.attr("fill", "none");
+        });
+    }
+  }
+
+
+
+
+  </script>
+
+
+
+
+  <script>
+    var dotSrc = `digraph G {
+W0 [color=x11gray, id=W0, label=W0, shape=note];
+concatenate_6 [color=mediumpurple1, id=concatenate_6, label=concatenate_6, shape=folder];
+W0 -> concatenate_6;
+W1 [color=x11gray, id=W1, label=W1, shape=note];
+W1 -> concatenate_6;
+W2 [color=x11gray, id=W2, label=W2, shape=note];
+W2 -> concatenate_6;
+X [color=lightskyblue1, id=X, label=X, shape=note];
+gemm_rcr_7 [color=mediumpurple1, id=gemm_rcr_7, label=gemm_rcr_7, shape=folder];
+X -> gemm_rcr_7;
+concatenate_6_0 [color=lightskyblue1, id=concatenate_6_0, label=concatenate_6_0, shape=note];
+concatenate_6 -> concatenate_6_0;
+concatenate_6_0 -> gemm_rcr_7;
+gemm_rcr_7_0 [color=lightskyblue1, id=gemm_rcr_7_0, label=gemm_rcr_7_0, shape=note];
+gemm_rcr_7 -> gemm_rcr_7_0;
+split_8 [color=mediumpurple1, id=split_8, label=split_8, shape=folder];
+gemm_rcr_7_0 -> split_8;
+split_8_0 [color=lightskyblue1, id=split_8_0, label=split_8_0, shape=note];
+split_8 -> split_8_0;
+elementwise_9 [color=mediumpurple1, id=elementwise_9, label=elementwise_9, shape=folder];
+split_8_0 -> elementwise_9;
+output0 [color=violetred, id=output0, label=output0, shape=note];
+elementwise_9 -> output0;
+elementwise_9_0 [color=lightskyblue1, id=elementwise_9_0, label=elementwise_9_0, shape=note];
+split_8 -> elementwise_9_0;
+elementwise_10 [color=mediumpurple1, id=elementwise_10, label=elementwise_10, shape=folder];
+elementwise_9_0 -> elementwise_10;
+output2 [color=violetred, id=output2, label=output2, shape=note];
+elementwise_10 -> output2;
+elementwise_10_0 [color=lightskyblue1, id=elementwise_10_0, label=elementwise_10_0, shape=note];
+split_8 -> elementwise_10_0;
+elementwise_11 [color=mediumpurple1, id=elementwise_11, label=elementwise_11, shape=folder];
+elementwise_10_0 -> elementwise_11;
+output1 [color=violetred, id=output1, label=output1, shape=note];
+elementwise_11 -> output1;
+}
+`;
+    var popover_data = {
+  "W0": "shape: [256, 256]",
+  "concatenate_6": "op: concatenate, depth: 0, nop: False, has_profiler: False",
+  "W1": "shape: [32, 256]",
+  "W2": "shape: [128, 256]",
+  "X": "shape: [1024, 256]",
+  "gemm_rcr_7": "op: gemm_rcr, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 8, split_k: 1",
+  "concatenate_6_0": "shape: [416, 256]",
+  "gemm_rcr_7_0": "shape: [1024, 416]",
+  "split_8": "op: split, depth: 2, nop: False, has_profiler: False",
+  "split_8_0": "shape: [1024, 256]",
+  "elementwise_9": "op: elementwise, depth: 1, nop: False, has_profiler: False",
+  "output0": "shape: [1024, 256]",
+  "elementwise_9_0": "shape: [1024, 128]",
+  "elementwise_10": "op: elementwise, depth: 1, nop: False, has_profiler: False",
+  "output2": "shape: [1024, 128]",
+  "elementwise_10_0": "shape: [1024, 32]",
+  "elementwise_11": "op: elementwise, depth: 1, nop: False, has_profiler: False",
+  "output1": "shape: [1024, 32]"
+};
+    var graphviz = d3.select("#graph").graphviz();
+    var pop_finish = 0;
+    // var dotSrcLines;
+
+    function add_popover() {
+      for (let i = 0; i < items.length; i++) {
+        var id = items[i];
+        var obj = $("#" + id);
+        obj.attr("data-content", popover_data[id]);
+        obj.attr("rel", "popover");
+        obj.attr("data-original-title", id);
+        obj.attr("data-placement", "top");
+        obj.attr("data-trigger", "hover");
+        obj.popover();
+      }
+    }
+  
+
+    function render() {
+      // console.log('DOT source =', dotSrc);
+      // dotSrcLines = dotSrc.split('\n');
+      graphviz.transition(function() {
+        return d3.transition().delay(100).duration(1000);
+      }).renderDot(dotSrc).on("end", interactive);
+    }
+
+    function launch_modal(modal_id) {
+      $('#' + modal_id + "_modal").modal('show');
+    }
+
+
+    function interactive() {
+      nodes = d3.selectAll('.node,.edge');
+      nodes.on("click", function() {
+        var id = d3.select(this).attr('id');
+        // console.log('Element id="%s"', id);
+        document.getElementById("name_input").value = id;
+        launch_modal(id);
+      });
+      nodes.on("mouseover", function() {
+        if (pop_finish == 0) {
+            add_popover();
+            pop_finish = 1;
+        }
+        var id = d3.select(this).attr("id");
+        // console.log('Move over Element id="%s"', id);
+        var obj = $("#" + id);
+        var shape = obj.find("polygon:first");
+        var color = shape.attr("stroke");
+        shape.attr("fill", color);
+        
+      });
+      nodes.on("mouseout", function() {
+        var id = d3.select(this).attr("id");
+        // console.log('Move off Element id="%s"', id);
+        var obj = $("#" + id);
+        var shape = obj.find("polygon:first");
+        shape.attr("fill", "none");
+      });
+
+    }
+    render(dotSrc);
+  </script>
+  
+</body>

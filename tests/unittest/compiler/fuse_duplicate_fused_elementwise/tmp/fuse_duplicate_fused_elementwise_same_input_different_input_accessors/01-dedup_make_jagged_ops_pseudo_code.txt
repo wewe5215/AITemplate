@@ -1,0 +1,34 @@
+# dynamic_slice_0
+(Tensor(name=dynamic_slice_0_0, shape=[32, 64, 50])) 
+= dynamic_slice(start_indices=[0, 0, 0], end_indices=[32, 64, 50])(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# dynamic_slice_1
+(Tensor(name=dynamic_slice_1_0, shape=[32, 64, 50])) 
+= dynamic_slice(start_indices=[0, 0, 50], end_indices=[32, 64, 100])(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# elementwise_2
+(Tensor(name=elementwise_2_0, shape=[32, 64, 50])) 
+= elementwise(func=FuncEnum.SIGMOID)(
+Tensor(name=dynamic_slice_0_0, shape=[32, 64, 50]))
+
+# elementwise_3
+(Tensor(name=elementwise_3_0, shape=[32, 64, 50])) 
+= elementwise(func=FuncEnum.SIGMOID)(
+Tensor(name=dynamic_slice_1_0, shape=[32, 64, 50]))
+
+# softmax_4
+(Tensor(name=softmax_4_0, shape=[32, 64, 50])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_2_0, shape=[32, 64, 50]))
+
+# softmax_5
+(Tensor(name=softmax_5_0, shape=[32, 64, 50])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_3_0, shape=[32, 64, 50]))
+
+# elementwise_6
+(Tensor(name=output, shape=[32, 64, 50])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=softmax_4_0, shape=[32, 64, 50]), Tensor(name=softmax_5_0, shape=[32, 64, 50]))

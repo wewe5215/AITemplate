@@ -1,0 +1,312 @@
+{
+  "Tensors": [
+    {
+      "name": "input_0",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              224
+            ],
+            "symbolic_value": 224
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              224
+            ],
+            "symbolic_value": 224
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "conv2d_bias_relu_few_channels_2"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 6422528,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "input_1",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_1_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              7
+            ],
+            "symbolic_value": 7
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              7
+            ],
+            "symbolic_value": 7
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "conv2d_bias_relu_few_channels_2"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 8028160,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "input_2",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_2_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "conv2d_bias_relu_few_channels_2"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 8053248,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "output_0",
+      "depth": 2,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        },
+        {
+          "_attrs": {
+            "name": "output_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              112
+            ],
+            "symbolic_value": 112
+          }
+        },
+        {
+          "_attrs": {
+            "name": "output_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              112
+            ],
+            "symbolic_value": 112
+          }
+        },
+        {
+          "_attrs": {
+            "name": "output_0_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        }
+      ],
+      "src_ops": [
+        "conv2d_bias_relu_few_channels_2"
+      ],
+      "dst_ops": [],
+      "dtype": "float16",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 0,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    }
+  ],
+  "Operators": [
+    {
+      "_original_op_name": "conv2d_bias_relu_few_channels_2",
+      "name": "conv2d_bias_relu_few_channels_2",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "input_0",
+        "input_1",
+        "input_2"
+      ],
+      "has_profiler": true,
+      "op": "conv2d_bias_relu_few_channels",
+      "stride": 2,
+      "pad": 3,
+      "dilate": 1,
+      "group": 1,
+      "epilogue_alignment": 8,
+      "epilogue": "LinearCombinationRelu",
+      "workspace": 0,
+      "split_k": null,
+      "CO": 64,
+      "KH": 7,
+      "KW": 7,
+      "dim_lower_bounds": [
+        4,
+        224,
+        224,
+        4
+      ],
+      "exec_path": {
+        "NI == 4 && HI == 224 && WI == 224 && CI == 4": "cutlass_f16_s16816fprop_fixed_channels_f16_64x64_32x3_nhwc_align_4_8"
+      },
+      "outputs": [
+        "output_0"
+      ],
+      "original_name": "conv2d_bias_relu_few_channels_2",
+      "op_instance": {
+        "cutlass_f16_s16816fprop_fixed_channels_f16_256x128_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df4f0560>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_128x256_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de53a090>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_256x64_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de52e090>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_64x256_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de5d9250>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_128x128_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de5d3bc0>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_128x64_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de909e50>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_64x128_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de90b4a0>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_64x64_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de7d8da0>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_256x128_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de31c380>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_128x256_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de909b20>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_256x64_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483defe0bf0>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_64x256_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df494b90>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_128x128_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deea5880>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_128x64_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df1cedb0>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_64x128_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df7e4fe0>",
+        "cutlass_f16_s16816fprop_fixed_channels_f16_64x64_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483de31fda0>"
+      }
+    }
+  ]
+}

@@ -1,0 +1,3714 @@
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>name_graph_graph_vis</title>
+</head>
+
+<style>
+
+html {
+  scroll-behavior: smooth;
+}
+
+* { box-sizing: border-box; }
+body {
+  font: 16px Arial;
+}
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
+.popover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  title-bg: "#0d6efd";
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+}
+
+</style>
+
+
+<body>
+
+<nav id="nav_bar" class="navbar fixed-top bg-light">
+  <div class="container-fluid">
+    <a onclick="back_to_head()" class="navbar-brand">name_graph_graph_vis</a>
+    <div class="navbar-right">
+        <div class="autocomplete" style="width:300px;">
+        <input id="name_input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <button class="btn btn-outline-success" onclick="launch_modal_with_input()">Search</button>
+    </div>
+  </div>
+</nav>
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+  <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+
+
+
+  <div id="graph" style="text-align: center;"></div>
+  
+<div class="modal fade" id="X1_modal" tabindex="-1" role="dialog" aria-labelledby="X1_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="X1_label">X1</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 256] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_1_modal" tabindex="-1" role="dialog" aria-labelledby="split_1_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_1_label">split_1</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> split </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 0 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_0_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_0_label">reshape_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> reshape </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 0 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W_modal" tabindex="-1" role="dialog" aria-labelledby="W_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W_label">W</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [4, 32, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="permute021_5_modal" tabindex="-1" role="dialog" aria-labelledby="permute021_5_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="permute021_5_label">permute021_5</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> permute021 </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 0 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="perm102_bmm_rcr_3_modal" tabindex="-1" role="dialog" aria-labelledby="perm102_bmm_rcr_3_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="perm102_bmm_rcr_3_label">perm102_bmm_rcr_3</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> perm102_bmm_rcr </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="perm102_bmm_rcr_bias_8_modal" tabindex="-1" role="dialog" aria-labelledby="perm102_bmm_rcr_bias_8_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="perm102_bmm_rcr_bias_8_label">perm102_bmm_rcr_bias_8</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> perm102_bmm_rcr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="B_modal" tabindex="-1" role="dialog" aria-labelledby="B_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="B_label">B</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [4, 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="perm102_bmm_rrr_bias_9_modal" tabindex="-1" role="dialog" aria-labelledby="perm102_bmm_rrr_bias_9_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="perm102_bmm_rrr_bias_9_label">perm102_bmm_rrr_bias_9</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> perm102_bmm_rrr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W0_modal" tabindex="-1" role="dialog" aria-labelledby="W0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W0_label">W0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_12_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_12_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_12_label">gemm_rcr_bias_12</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> gemm_rcr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="B0_modal" tabindex="-1" role="dialog" aria-labelledby="B0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="B0_label">B0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W1_modal" tabindex="-1" role="dialog" aria-labelledby="W1_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W1_label">W1</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_13_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_13_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_13_label">gemm_rcr_bias_13</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> gemm_rcr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="B1_modal" tabindex="-1" role="dialog" aria-labelledby="B1_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="B1_label">B1</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W2_modal" tabindex="-1" role="dialog" aria-labelledby="W2_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W2_label">W2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_14_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_14_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_14_label">gemm_rcr_bias_14</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> gemm_rcr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="B2_modal" tabindex="-1" role="dialog" aria-labelledby="B2_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="B2_label">B2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W3_modal" tabindex="-1" role="dialog" aria-labelledby="W3_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W3_label">W3</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_15_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_15_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_15_label">gemm_rcr_bias_15</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> gemm_rcr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="B3_modal" tabindex="-1" role="dialog" aria-labelledby="B3_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="B3_label">B3</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="X2_modal" tabindex="-1" role="dialog" aria-labelledby="X2_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="X2_label">X2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 256] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_2_modal" tabindex="-1" role="dialog" aria-labelledby="split_2_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_2_label">split_2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> split </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 0 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W4_modal" tabindex="-1" role="dialog" aria-labelledby="W4_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W4_label">W4</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_16_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_16_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_16_label">gemm_rcr_bias_16</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> gemm_rcr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="B4_modal" tabindex="-1" role="dialog" aria-labelledby="B4_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="B4_label">B4</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W5_modal" tabindex="-1" role="dialog" aria-labelledby="W5_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W5_label">W5</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_17_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_17_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_17_label">gemm_rcr_bias_17</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> gemm_rcr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="B5_modal" tabindex="-1" role="dialog" aria-labelledby="B5_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="B5_label">B5</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W6_modal" tabindex="-1" role="dialog" aria-labelledby="W6_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W6_label">W6</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_18_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_18_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_18_label">gemm_rcr_bias_18</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> gemm_rcr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="B6_modal" tabindex="-1" role="dialog" aria-labelledby="B6_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="B6_label">B6</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="W7_modal" tabindex="-1" role="dialog" aria-labelledby="W7_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="W7_label">W7</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_19_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_19_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_19_label">gemm_rcr_bias_19</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> gemm_rcr_bias </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="B7_modal" tabindex="-1" role="dialog" aria-labelledby="B7_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="B7_label">B7</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_0_0_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_0_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_0_0_label">reshape_0_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 4, 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> X1 </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="perm102_bmm_rrr_6_modal" tabindex="-1" role="dialog" aria-labelledby="perm102_bmm_rrr_6_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="perm102_bmm_rrr_6_label">perm102_bmm_rrr_6</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> perm102_bmm_rrr </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 1 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> epilogue </td>
+      <td> LinearCombination </td>
+    </tr>  <tr>
+      <td> epilogue_alignment </td>
+      <td> 4 </td>
+    </tr>  <tr>
+      <td> split_k </td>
+      <td> 1 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_1_0_modal" tabindex="-1" role="dialog" aria-labelledby="split_1_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_1_0_label">split_1_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_1_1_modal" tabindex="-1" role="dialog" aria-labelledby="split_1_1_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_1_1_label">split_1_1</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_1_2_modal" tabindex="-1" role="dialog" aria-labelledby="split_1_2_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_1_2_label">split_1_2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_1_3_modal" tabindex="-1" role="dialog" aria-labelledby="split_1_3_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_1_3_label">split_1_3</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_2_0_modal" tabindex="-1" role="dialog" aria-labelledby="split_2_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_2_0_label">split_2_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_2_1_modal" tabindex="-1" role="dialog" aria-labelledby="split_2_1_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_2_1_label">split_2_1</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_2_2_modal" tabindex="-1" role="dialog" aria-labelledby="split_2_2_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_2_2_label">split_2_2</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="split_2_3_modal" tabindex="-1" role="dialog" aria-labelledby="split_2_3_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="split_2_3_label">split_2_3</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 64] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="perm102_bmm_rcr_3_0_modal" tabindex="-1" role="dialog" aria-labelledby="perm102_bmm_rcr_3_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="perm102_bmm_rcr_3_0_label">perm102_bmm_rcr_3_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 4, 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_4_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_4_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_4_label">reshape_4</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> reshape </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 2 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_4_0_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_4_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_4_0_label">reshape_4_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 128] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> perm102_bmm_rcr_3_0 </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="concatenate_20_modal" tabindex="-1" role="dialog" aria-labelledby="concatenate_20_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="concatenate_20_label">concatenate_20</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> concatenate </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 3 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="permute021_5_0_modal" tabindex="-1" role="dialog" aria-labelledby="permute021_5_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="permute021_5_0_label">permute021_5_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [4, 64, 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="perm102_bmm_rrr_6_0_modal" tabindex="-1" role="dialog" aria-labelledby="perm102_bmm_rrr_6_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="perm102_bmm_rrr_6_0_label">perm102_bmm_rrr_6_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 4, 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_7_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_7_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_7_label">reshape_7</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> reshape </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 2 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_7_0_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_7_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_7_0_label">reshape_7_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 128] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> perm102_bmm_rrr_6_0 </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="perm102_bmm_rcr_bias_8_0_modal" tabindex="-1" role="dialog" aria-labelledby="perm102_bmm_rcr_bias_8_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="perm102_bmm_rcr_bias_8_0_label">perm102_bmm_rcr_bias_8_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 4, 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_10_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_10_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_10_label">reshape_10</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> reshape </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 2 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="perm102_bmm_rrr_bias_9_0_modal" tabindex="-1" role="dialog" aria-labelledby="perm102_bmm_rrr_bias_9_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="perm102_bmm_rrr_bias_9_0_label">perm102_bmm_rrr_bias_9_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 4, 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_11_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_11_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_11_label">reshape_11</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> op </td>
+      <td> reshape </td>
+    </tr>  <tr>
+      <td> depth </td>
+      <td> 2 </td>
+    </tr>  <tr>
+      <td> nop </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> has_profiler </td>
+      <td> False </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_10_0_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_10_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_10_0_label">reshape_10_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 128] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> perm102_bmm_rcr_bias_8_0 </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reshape_11_0_modal" tabindex="-1" role="dialog" aria-labelledby="reshape_11_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reshape_11_0_label">reshape_11_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 128] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> perm102_bmm_rrr_bias_9_0 </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_12_0_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_12_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_12_0_label">gemm_rcr_bias_12_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_13_0_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_13_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_13_0_label">gemm_rcr_bias_13_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_14_0_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_14_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_14_0_label">gemm_rcr_bias_14_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_15_0_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_15_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_15_0_label">gemm_rcr_bias_15_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_16_0_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_16_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_16_0_label">gemm_rcr_bias_16_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_17_0_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_17_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_17_0_label">gemm_rcr_bias_17_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_18_0_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_18_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_18_0_label">gemm_rcr_bias_18_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gemm_rcr_bias_19_0_modal" tabindex="-1" role="dialog" aria-labelledby="gemm_rcr_bias_19_0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="gemm_rcr_bias_19_0_label">gemm_rcr_bias_19_0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 32] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="output0_modal" tabindex="-1" role="dialog" aria-labelledby="output0_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="output0_label">output0</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Attributes</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>  <tr>
+      <td> shape </td>
+      <td> [(128, 256), 768] </td>
+    </tr>  <tr>
+      <td> is_view_of </td>
+      <td> None </td>
+    </tr>  <tr>
+      <td> is_input </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> is_output </td>
+      <td> True </td>
+    </tr>  <tr>
+      <td> is_param </td>
+      <td> False </td>
+    </tr>  <tr>
+      <td> dtype </td>
+      <td> float32 </td>
+    </tr>  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <script>
+  items = [
+  "X1",
+  "split_1",
+  "reshape_0",
+  "W",
+  "permute021_5",
+  "perm102_bmm_rcr_3",
+  "perm102_bmm_rcr_bias_8",
+  "B",
+  "perm102_bmm_rrr_bias_9",
+  "W0",
+  "gemm_rcr_bias_12",
+  "B0",
+  "W1",
+  "gemm_rcr_bias_13",
+  "B1",
+  "W2",
+  "gemm_rcr_bias_14",
+  "B2",
+  "W3",
+  "gemm_rcr_bias_15",
+  "B3",
+  "X2",
+  "split_2",
+  "W4",
+  "gemm_rcr_bias_16",
+  "B4",
+  "W5",
+  "gemm_rcr_bias_17",
+  "B5",
+  "W6",
+  "gemm_rcr_bias_18",
+  "B6",
+  "W7",
+  "gemm_rcr_bias_19",
+  "B7",
+  "reshape_0_0",
+  "perm102_bmm_rrr_6",
+  "split_1_0",
+  "split_1_1",
+  "split_1_2",
+  "split_1_3",
+  "split_2_0",
+  "split_2_1",
+  "split_2_2",
+  "split_2_3",
+  "perm102_bmm_rcr_3_0",
+  "reshape_4",
+  "reshape_4_0",
+  "concatenate_20",
+  "permute021_5_0",
+  "perm102_bmm_rrr_6_0",
+  "reshape_7",
+  "reshape_7_0",
+  "perm102_bmm_rcr_bias_8_0",
+  "reshape_10",
+  "perm102_bmm_rrr_bias_9_0",
+  "reshape_11",
+  "reshape_10_0",
+  "reshape_11_0",
+  "gemm_rcr_bias_12_0",
+  "gemm_rcr_bias_13_0",
+  "gemm_rcr_bias_14_0",
+  "gemm_rcr_bias_15_0",
+  "gemm_rcr_bias_16_0",
+  "gemm_rcr_bias_17_0",
+  "gemm_rcr_bias_18_0",
+  "gemm_rcr_bias_19_0",
+  "output0"
+];
+  function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert an input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+              b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+}
+/*execute a function when someone clicks in the document:*/
+document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+});
+}
+  autocomplete(document.getElementById("name_input"), items);
+
+  function back_to_head() {
+    var modal_id = items[0];
+    var modal = document.getElementById(modal_id);
+    modal.scrollIntoView({ block: 'center',  behavior: 'smooth' });
+  }
+
+  function launch_modal_with_input() {
+    var modal_id = document.getElementById("name_input").value;
+    var modal = document.getElementById(modal_id);
+    if (modal == null) {
+        var msg = "Could not find node with name: " + modal_id;
+        alert(msg);
+    } else {
+        modal.scrollIntoView({ block: 'center',  behavior: 'smooth' });
+        var obj = $("#" + modal_id);
+        var shape = obj.find("polygon:first");
+        var color = shape.attr("stroke");
+        shape.attr("fill", color);
+        for (let i = 0; i < 5; i++) {
+            obj.fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+        }
+        obj.promise().done(function(){
+            shape.attr("fill", "none");
+        });
+    }
+  }
+
+
+
+
+  </script>
+
+
+
+
+  <script>
+    var dotSrc = `digraph G {
+X1 [color=lightskyblue1, id=X1, label=X1, shape=note];
+split_1 [color=mediumpurple1, id=split_1, label=split_1, shape=folder];
+X1 -> split_1;
+reshape_0 [color=mediumpurple1, id=reshape_0, label=reshape_0, shape=folder];
+X1 -> reshape_0;
+W [color=x11gray, id=W, label=W, shape=note];
+permute021_5 [color=mediumpurple1, id=permute021_5, label=permute021_5, shape=folder];
+W -> permute021_5;
+perm102_bmm_rcr_3 [color=mediumpurple1, id=perm102_bmm_rcr_3, label=perm102_bmm_rcr_3, shape=folder];
+W -> perm102_bmm_rcr_3;
+perm102_bmm_rcr_bias_8 [color=mediumpurple1, id=perm102_bmm_rcr_bias_8, label=perm102_bmm_rcr_bias_8, shape=folder];
+W -> perm102_bmm_rcr_bias_8;
+B [color=x11gray, id=B, label=B, shape=note];
+B -> perm102_bmm_rcr_bias_8;
+perm102_bmm_rrr_bias_9 [color=mediumpurple1, id=perm102_bmm_rrr_bias_9, label=perm102_bmm_rrr_bias_9, shape=folder];
+B -> perm102_bmm_rrr_bias_9;
+W0 [color=x11gray, id=W0, label=W0, shape=note];
+gemm_rcr_bias_12 [color=mediumpurple1, id=gemm_rcr_bias_12, label=gemm_rcr_bias_12, shape=folder];
+W0 -> gemm_rcr_bias_12;
+B0 [color=x11gray, id=B0, label=B0, shape=note];
+B0 -> gemm_rcr_bias_12;
+W1 [color=x11gray, id=W1, label=W1, shape=note];
+gemm_rcr_bias_13 [color=mediumpurple1, id=gemm_rcr_bias_13, label=gemm_rcr_bias_13, shape=folder];
+W1 -> gemm_rcr_bias_13;
+B1 [color=x11gray, id=B1, label=B1, shape=note];
+B1 -> gemm_rcr_bias_13;
+W2 [color=x11gray, id=W2, label=W2, shape=note];
+gemm_rcr_bias_14 [color=mediumpurple1, id=gemm_rcr_bias_14, label=gemm_rcr_bias_14, shape=folder];
+W2 -> gemm_rcr_bias_14;
+B2 [color=x11gray, id=B2, label=B2, shape=note];
+B2 -> gemm_rcr_bias_14;
+W3 [color=x11gray, id=W3, label=W3, shape=note];
+gemm_rcr_bias_15 [color=mediumpurple1, id=gemm_rcr_bias_15, label=gemm_rcr_bias_15, shape=folder];
+W3 -> gemm_rcr_bias_15;
+B3 [color=x11gray, id=B3, label=B3, shape=note];
+B3 -> gemm_rcr_bias_15;
+X2 [color=lightskyblue1, id=X2, label=X2, shape=note];
+split_2 [color=mediumpurple1, id=split_2, label=split_2, shape=folder];
+X2 -> split_2;
+W4 [color=x11gray, id=W4, label=W4, shape=note];
+gemm_rcr_bias_16 [color=mediumpurple1, id=gemm_rcr_bias_16, label=gemm_rcr_bias_16, shape=folder];
+W4 -> gemm_rcr_bias_16;
+B4 [color=x11gray, id=B4, label=B4, shape=note];
+B4 -> gemm_rcr_bias_16;
+W5 [color=x11gray, id=W5, label=W5, shape=note];
+gemm_rcr_bias_17 [color=mediumpurple1, id=gemm_rcr_bias_17, label=gemm_rcr_bias_17, shape=folder];
+W5 -> gemm_rcr_bias_17;
+B5 [color=x11gray, id=B5, label=B5, shape=note];
+B5 -> gemm_rcr_bias_17;
+W6 [color=x11gray, id=W6, label=W6, shape=note];
+gemm_rcr_bias_18 [color=mediumpurple1, id=gemm_rcr_bias_18, label=gemm_rcr_bias_18, shape=folder];
+W6 -> gemm_rcr_bias_18;
+B6 [color=x11gray, id=B6, label=B6, shape=note];
+B6 -> gemm_rcr_bias_18;
+W7 [color=x11gray, id=W7, label=W7, shape=note];
+gemm_rcr_bias_19 [color=mediumpurple1, id=gemm_rcr_bias_19, label=gemm_rcr_bias_19, shape=folder];
+W7 -> gemm_rcr_bias_19;
+B7 [color=x11gray, id=B7, label=B7, shape=note];
+B7 -> gemm_rcr_bias_19;
+reshape_0_0 [color=plum1, id=reshape_0_0, label=reshape_0_0, shape=note];
+reshape_0 -> reshape_0_0;
+reshape_0_0 -> perm102_bmm_rcr_3;
+reshape_0_0 -> perm102_bmm_rcr_bias_8;
+perm102_bmm_rrr_6 [color=mediumpurple1, id=perm102_bmm_rrr_6, label=perm102_bmm_rrr_6, shape=folder];
+reshape_0_0 -> perm102_bmm_rrr_6;
+reshape_0_0 -> perm102_bmm_rrr_bias_9;
+split_1_0 [color=lightskyblue1, id=split_1_0, label=split_1_0, shape=note];
+split_1 -> split_1_0;
+split_1_0 -> gemm_rcr_bias_15;
+split_1_1 [color=lightskyblue1, id=split_1_1, label=split_1_1, shape=note];
+split_1 -> split_1_1;
+split_1_1 -> gemm_rcr_bias_14;
+split_1_2 [color=lightskyblue1, id=split_1_2, label=split_1_2, shape=note];
+split_1 -> split_1_2;
+split_1_2 -> gemm_rcr_bias_12;
+split_1_3 [color=lightskyblue1, id=split_1_3, label=split_1_3, shape=note];
+split_1 -> split_1_3;
+split_1_3 -> gemm_rcr_bias_13;
+split_2_0 [color=lightskyblue1, id=split_2_0, label=split_2_0, shape=note];
+split_2 -> split_2_0;
+split_2_0 -> gemm_rcr_bias_18;
+split_2_1 [color=lightskyblue1, id=split_2_1, label=split_2_1, shape=note];
+split_2 -> split_2_1;
+split_2_1 -> gemm_rcr_bias_19;
+split_2_2 [color=lightskyblue1, id=split_2_2, label=split_2_2, shape=note];
+split_2 -> split_2_2;
+split_2_2 -> gemm_rcr_bias_16;
+split_2_3 [color=lightskyblue1, id=split_2_3, label=split_2_3, shape=note];
+split_2 -> split_2_3;
+split_2_3 -> gemm_rcr_bias_17;
+perm102_bmm_rcr_3_0 [color=lightskyblue1, id=perm102_bmm_rcr_3_0, label=perm102_bmm_rcr_3_0, shape=note];
+perm102_bmm_rcr_3 -> perm102_bmm_rcr_3_0;
+reshape_4 [color=mediumpurple1, id=reshape_4, label=reshape_4, shape=folder];
+perm102_bmm_rcr_3_0 -> reshape_4;
+reshape_4_0 [color=plum1, id=reshape_4_0, label=reshape_4_0, shape=note];
+reshape_4 -> reshape_4_0;
+concatenate_20 [color=mediumpurple1, id=concatenate_20, label=concatenate_20, shape=folder];
+reshape_4_0 -> concatenate_20;
+permute021_5_0 [color=lightskyblue1, id=permute021_5_0, label=permute021_5_0, shape=note];
+permute021_5 -> permute021_5_0;
+permute021_5_0 -> perm102_bmm_rrr_6;
+permute021_5_0 -> perm102_bmm_rrr_bias_9;
+perm102_bmm_rrr_6_0 [color=lightskyblue1, id=perm102_bmm_rrr_6_0, label=perm102_bmm_rrr_6_0, shape=note];
+perm102_bmm_rrr_6 -> perm102_bmm_rrr_6_0;
+reshape_7 [color=mediumpurple1, id=reshape_7, label=reshape_7, shape=folder];
+perm102_bmm_rrr_6_0 -> reshape_7;
+reshape_7_0 [color=plum1, id=reshape_7_0, label=reshape_7_0, shape=note];
+reshape_7 -> reshape_7_0;
+reshape_7_0 -> concatenate_20;
+perm102_bmm_rcr_bias_8_0 [color=lightskyblue1, id=perm102_bmm_rcr_bias_8_0, label=perm102_bmm_rcr_bias_8_0, shape=note];
+perm102_bmm_rcr_bias_8 -> perm102_bmm_rcr_bias_8_0;
+reshape_10 [color=mediumpurple1, id=reshape_10, label=reshape_10, shape=folder];
+perm102_bmm_rcr_bias_8_0 -> reshape_10;
+perm102_bmm_rrr_bias_9_0 [color=lightskyblue1, id=perm102_bmm_rrr_bias_9_0, label=perm102_bmm_rrr_bias_9_0, shape=note];
+perm102_bmm_rrr_bias_9 -> perm102_bmm_rrr_bias_9_0;
+reshape_11 [color=mediumpurple1, id=reshape_11, label=reshape_11, shape=folder];
+perm102_bmm_rrr_bias_9_0 -> reshape_11;
+reshape_10_0 [color=plum1, id=reshape_10_0, label=reshape_10_0, shape=note];
+reshape_10 -> reshape_10_0;
+reshape_10_0 -> concatenate_20;
+reshape_11_0 [color=plum1, id=reshape_11_0, label=reshape_11_0, shape=note];
+reshape_11 -> reshape_11_0;
+reshape_11_0 -> concatenate_20;
+gemm_rcr_bias_12_0 [color=lightskyblue1, id=gemm_rcr_bias_12_0, label=gemm_rcr_bias_12_0, shape=note];
+gemm_rcr_bias_12 -> gemm_rcr_bias_12_0;
+gemm_rcr_bias_12_0 -> concatenate_20;
+gemm_rcr_bias_13_0 [color=lightskyblue1, id=gemm_rcr_bias_13_0, label=gemm_rcr_bias_13_0, shape=note];
+gemm_rcr_bias_13 -> gemm_rcr_bias_13_0;
+gemm_rcr_bias_13_0 -> concatenate_20;
+gemm_rcr_bias_14_0 [color=lightskyblue1, id=gemm_rcr_bias_14_0, label=gemm_rcr_bias_14_0, shape=note];
+gemm_rcr_bias_14 -> gemm_rcr_bias_14_0;
+gemm_rcr_bias_14_0 -> concatenate_20;
+gemm_rcr_bias_15_0 [color=lightskyblue1, id=gemm_rcr_bias_15_0, label=gemm_rcr_bias_15_0, shape=note];
+gemm_rcr_bias_15 -> gemm_rcr_bias_15_0;
+gemm_rcr_bias_15_0 -> concatenate_20;
+gemm_rcr_bias_16_0 [color=lightskyblue1, id=gemm_rcr_bias_16_0, label=gemm_rcr_bias_16_0, shape=note];
+gemm_rcr_bias_16 -> gemm_rcr_bias_16_0;
+gemm_rcr_bias_16_0 -> concatenate_20;
+gemm_rcr_bias_17_0 [color=lightskyblue1, id=gemm_rcr_bias_17_0, label=gemm_rcr_bias_17_0, shape=note];
+gemm_rcr_bias_17 -> gemm_rcr_bias_17_0;
+gemm_rcr_bias_17_0 -> concatenate_20;
+gemm_rcr_bias_18_0 [color=lightskyblue1, id=gemm_rcr_bias_18_0, label=gemm_rcr_bias_18_0, shape=note];
+gemm_rcr_bias_18 -> gemm_rcr_bias_18_0;
+gemm_rcr_bias_18_0 -> concatenate_20;
+gemm_rcr_bias_19_0 [color=lightskyblue1, id=gemm_rcr_bias_19_0, label=gemm_rcr_bias_19_0, shape=note];
+gemm_rcr_bias_19 -> gemm_rcr_bias_19_0;
+gemm_rcr_bias_19_0 -> concatenate_20;
+output0 [color=violetred, id=output0, label=output0, shape=note];
+concatenate_20 -> output0;
+}
+`;
+    var popover_data = {
+  "X1": "shape: [(128, 256), 256]",
+  "split_1": "op: split, depth: 0, nop: False, has_profiler: False",
+  "reshape_0": "op: reshape, depth: 0, nop: False, has_profiler: False",
+  "W": "shape: [4, 32, 64]",
+  "permute021_5": "op: permute021, depth: 0, nop: False, has_profiler: False",
+  "perm102_bmm_rcr_3": "op: perm102_bmm_rcr, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "perm102_bmm_rcr_bias_8": "op: perm102_bmm_rcr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "B": "shape: [4, 32]",
+  "perm102_bmm_rrr_bias_9": "op: perm102_bmm_rrr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "W0": "shape: [32, 64]",
+  "gemm_rcr_bias_12": "op: gemm_rcr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "B0": "shape: [32]",
+  "W1": "shape: [32, 64]",
+  "gemm_rcr_bias_13": "op: gemm_rcr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "B1": "shape: [32]",
+  "W2": "shape: [32, 64]",
+  "gemm_rcr_bias_14": "op: gemm_rcr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "B2": "shape: [32]",
+  "W3": "shape: [32, 64]",
+  "gemm_rcr_bias_15": "op: gemm_rcr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "B3": "shape: [32]",
+  "X2": "shape: [(128, 256), 256]",
+  "split_2": "op: split, depth: 0, nop: False, has_profiler: False",
+  "W4": "shape: [32, 64]",
+  "gemm_rcr_bias_16": "op: gemm_rcr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "B4": "shape: [32]",
+  "W5": "shape: [32, 64]",
+  "gemm_rcr_bias_17": "op: gemm_rcr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "B5": "shape: [32]",
+  "W6": "shape: [32, 64]",
+  "gemm_rcr_bias_18": "op: gemm_rcr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "B6": "shape: [32]",
+  "W7": "shape: [32, 64]",
+  "gemm_rcr_bias_19": "op: gemm_rcr_bias, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "B7": "shape: [32]",
+  "reshape_0_0": "shape: [(128, 256), 4, 64]",
+  "perm102_bmm_rrr_6": "op: perm102_bmm_rrr, depth: 1, nop: False, has_profiler: True, epilogue: LinearCombination, epilogue_alignment: 4, split_k: 1",
+  "split_1_0": "shape: [(128, 256), 64]",
+  "split_1_1": "shape: [(128, 256), 64]",
+  "split_1_2": "shape: [(128, 256), 64]",
+  "split_1_3": "shape: [(128, 256), 64]",
+  "split_2_0": "shape: [(128, 256), 64]",
+  "split_2_1": "shape: [(128, 256), 64]",
+  "split_2_2": "shape: [(128, 256), 64]",
+  "split_2_3": "shape: [(128, 256), 64]",
+  "perm102_bmm_rcr_3_0": "shape: [(128, 256), 4, 32]",
+  "reshape_4": "op: reshape, depth: 2, nop: False, has_profiler: False",
+  "reshape_4_0": "shape: [(128, 256), 128]",
+  "concatenate_20": "op: concatenate, depth: 3, nop: False, has_profiler: False",
+  "permute021_5_0": "shape: [4, 64, 32]",
+  "perm102_bmm_rrr_6_0": "shape: [(128, 256), 4, 32]",
+  "reshape_7": "op: reshape, depth: 2, nop: False, has_profiler: False",
+  "reshape_7_0": "shape: [(128, 256), 128]",
+  "perm102_bmm_rcr_bias_8_0": "shape: [(128, 256), 4, 32]",
+  "reshape_10": "op: reshape, depth: 2, nop: False, has_profiler: False",
+  "perm102_bmm_rrr_bias_9_0": "shape: [(128, 256), 4, 32]",
+  "reshape_11": "op: reshape, depth: 2, nop: False, has_profiler: False",
+  "reshape_10_0": "shape: [(128, 256), 128]",
+  "reshape_11_0": "shape: [(128, 256), 128]",
+  "gemm_rcr_bias_12_0": "shape: [(128, 256), 32]",
+  "gemm_rcr_bias_13_0": "shape: [(128, 256), 32]",
+  "gemm_rcr_bias_14_0": "shape: [(128, 256), 32]",
+  "gemm_rcr_bias_15_0": "shape: [(128, 256), 32]",
+  "gemm_rcr_bias_16_0": "shape: [(128, 256), 32]",
+  "gemm_rcr_bias_17_0": "shape: [(128, 256), 32]",
+  "gemm_rcr_bias_18_0": "shape: [(128, 256), 32]",
+  "gemm_rcr_bias_19_0": "shape: [(128, 256), 32]",
+  "output0": "shape: [(128, 256), 768]"
+};
+    var graphviz = d3.select("#graph").graphviz();
+    var pop_finish = 0;
+    // var dotSrcLines;
+
+    function add_popover() {
+      for (let i = 0; i < items.length; i++) {
+        var id = items[i];
+        var obj = $("#" + id);
+        obj.attr("data-content", popover_data[id]);
+        obj.attr("rel", "popover");
+        obj.attr("data-original-title", id);
+        obj.attr("data-placement", "top");
+        obj.attr("data-trigger", "hover");
+        obj.popover();
+      }
+    }
+  
+
+    function render() {
+      // console.log('DOT source =', dotSrc);
+      // dotSrcLines = dotSrc.split('\n');
+      graphviz.transition(function() {
+        return d3.transition().delay(100).duration(1000);
+      }).renderDot(dotSrc).on("end", interactive);
+    }
+
+    function launch_modal(modal_id) {
+      $('#' + modal_id + "_modal").modal('show');
+    }
+
+
+    function interactive() {
+      nodes = d3.selectAll('.node,.edge');
+      nodes.on("click", function() {
+        var id = d3.select(this).attr('id');
+        // console.log('Element id="%s"', id);
+        document.getElementById("name_input").value = id;
+        launch_modal(id);
+      });
+      nodes.on("mouseover", function() {
+        if (pop_finish == 0) {
+            add_popover();
+            pop_finish = 1;
+        }
+        var id = d3.select(this).attr("id");
+        // console.log('Move over Element id="%s"', id);
+        var obj = $("#" + id);
+        var shape = obj.find("polygon:first");
+        var color = shape.attr("stroke");
+        shape.attr("fill", color);
+        
+      });
+      nodes.on("mouseout", function() {
+        var id = d3.select(this).attr("id");
+        // console.log('Move off Element id="%s"', id);
+        var obj = $("#" + id);
+        var shape = obj.find("polygon:first");
+        shape.attr("fill", "none");
+      });
+
+    }
+    render(dotSrc);
+  </script>
+  
+</body>

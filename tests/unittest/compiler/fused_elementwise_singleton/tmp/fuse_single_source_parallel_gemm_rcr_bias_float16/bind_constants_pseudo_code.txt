@@ -1,0 +1,34 @@
+# concatenate_6
+(Tensor(name=concatenate_6_0, shape=[316, 256])) 
+= concatenate(dim=0)(
+Tensor(name=W0, shape=[36, 256], data=(18432 bytes)), Tensor(name=W1, shape=[24, 256], data=(12288 bytes)), Tensor(name=W2, shape=[256, 256], data=(131072 bytes)))
+
+# concatenate_7
+(Tensor(name=concatenate_7_0, shape=[316])) 
+= concatenate(dim=0)(
+Tensor(name=B0, shape=[36], data=(72 bytes)), Tensor(name=B1, shape=[24], data=(48 bytes)), Tensor(name=B2, shape=[256], data=(512 bytes)))
+
+# gemm_rcr_bias_8
+(Tensor(name=gemm_rcr_bias_8_0, shape=[1024, 316])) 
+= gemm_rcr_bias()(
+Tensor(name=X, shape=[1024, 256]), Tensor(name=concatenate_6_0, shape=[316, 256]), Tensor(name=concatenate_7_0, shape=[316]))
+
+# split_9
+(Tensor(name=elementwise_10_0, shape=[1024, 36]), Tensor(name=elementwise_11_0, shape=[1024, 24]), Tensor(name=split_9_0, shape=[1024, 256])) 
+= split(split_sizes=[36, 24, 256]], dim=1])(
+Tensor(name=gemm_rcr_bias_8_0, shape=[1024, 316]))
+
+# elementwise_10
+(Tensor(name=output2, shape=[1024, 256])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=split_9_0, shape=[1024, 256]))
+
+# elementwise_11
+(Tensor(name=output0, shape=[1024, 36])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=elementwise_10_0, shape=[1024, 36]))
+
+# elementwise_12
+(Tensor(name=output1, shape=[1024, 24])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=elementwise_11_0, shape=[1024, 24]))

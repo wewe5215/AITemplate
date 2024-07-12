@@ -1,0 +1,69 @@
+# elementwise_0
+(Tensor(name=elementwise_0_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# elementwise_1
+(Tensor(name=elementwise_1_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# concatenate_2
+(Tensor(name=concatenate_2_0, shape=[64, 64, 100])) 
+= concatenate(dim=0)(
+Tensor(name=elementwise_1_0, shape=[32, 64, 100]), Tensor(name=input_p, shape=[32, 64, 100]))
+
+# elementwise_3
+(Tensor(name=elementwise_3_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# elementwise_4
+(Tensor(name=elementwise_4_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.GELU)(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# elementwise_5
+(Tensor(name=elementwise_5_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=input_z, shape=[32, 64, 100]))
+
+# concatenate_6
+(Tensor(name=concatenate_6_0, shape=[64, 64, 100])) 
+= concatenate(dim=0)(
+Tensor(name=elementwise_5_0, shape=[32, 64, 100]), Tensor(name=elementwise_4_0, shape=[32, 64, 100]))
+
+# elementwise_7
+(Tensor(name=elementwise_7_0, shape=[32, 64, 100])) 
+= elementwise(func=FuncEnum.TANH)(
+Tensor(name=elementwise_0_0, shape=[32, 64, 100]))
+
+# concatenate_8
+(Tensor(name=concatenate_8_0, shape=[64, 64, 100])) 
+= concatenate(dim=0)(
+Tensor(name=elementwise_0_0, shape=[32, 64, 100]), Tensor(name=elementwise_7_0, shape=[32, 64, 100]))
+
+# elementwise_9
+(Tensor(name=elementwise_9_0, shape=[64, 64, 100])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=concatenate_8_0, shape=[64, 64, 100]), Tensor(name=concatenate_2_0, shape=[64, 64, 100]))
+
+# softmax_10
+(Tensor(name=softmax_10_0, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_3_0, shape=[32, 64, 100]))
+
+# concatenate_11
+(Tensor(name=concatenate_11_0, shape=[64, 64, 100])) 
+= concatenate(dim=0)(
+Tensor(name=softmax_10_0, shape=[32, 64, 100]), Tensor(name=softmax_10_0, shape=[32, 64, 100]))
+
+# elementwise_12
+(Tensor(name=elementwise_12_0, shape=[64, 64, 100])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=elementwise_9_0, shape=[64, 64, 100]), Tensor(name=concatenate_11_0, shape=[64, 64, 100]))
+
+# elementwise_13
+(Tensor(name=output, shape=[64, 64, 100])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=elementwise_12_0, shape=[64, 64, 100]), Tensor(name=concatenate_6_0, shape=[64, 64, 100]))

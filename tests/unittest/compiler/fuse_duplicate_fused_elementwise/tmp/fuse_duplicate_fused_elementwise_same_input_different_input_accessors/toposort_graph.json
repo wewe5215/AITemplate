@@ -1,0 +1,633 @@
+{
+  "Tensors": [
+    {
+      "name": "input_x",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              100
+            ],
+            "symbolic_value": 100
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        null,
+        null
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": null,
+      "depth": 1,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              50
+            ],
+            "symbolic_value": 50
+          }
+        }
+      ],
+      "src_ops": [
+        null
+      ],
+      "dst_ops": [
+        null
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": null,
+      "depth": 1,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              50
+            ],
+            "symbolic_value": 50
+          }
+        }
+      ],
+      "src_ops": [
+        null
+      ],
+      "dst_ops": [
+        null
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": null,
+      "depth": 2,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              50
+            ],
+            "symbolic_value": 50
+          }
+        }
+      ],
+      "src_ops": [
+        null
+      ],
+      "dst_ops": [
+        null
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": null,
+      "depth": 2,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              50
+            ],
+            "symbolic_value": 50
+          }
+        }
+      ],
+      "src_ops": [
+        null
+      ],
+      "dst_ops": [
+        null
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": null,
+      "depth": 3,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              50
+            ],
+            "symbolic_value": 50
+          }
+        }
+      ],
+      "src_ops": [
+        null
+      ],
+      "dst_ops": [
+        null
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": null,
+      "depth": 3,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              50
+            ],
+            "symbolic_value": 50
+          }
+        }
+      ],
+      "src_ops": [
+        null
+      ],
+      "dst_ops": [
+        null
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "output",
+      "depth": 4,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              64
+            ],
+            "symbolic_value": 64
+          }
+        },
+        {
+          "_attrs": {
+            "name": null,
+            "depth": 0,
+            "nop": false,
+            "values": [
+              50
+            ],
+            "symbolic_value": 50
+          }
+        }
+      ],
+      "src_ops": [
+        null
+      ],
+      "dst_ops": [],
+      "dtype": "float16",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    }
+  ],
+  "Operators": [
+    {
+      "_original_op_name": null,
+      "name": null,
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "input_x"
+      ],
+      "has_profiler": false,
+      "op": "dynamic_slice",
+      "start_indices": [
+        0,
+        0,
+        0
+      ],
+      "end_indices": [
+        32,
+        64,
+        50
+      ],
+      "outputs": [
+        null
+      ]
+    },
+    {
+      "_original_op_name": null,
+      "name": null,
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "input_x"
+      ],
+      "has_profiler": false,
+      "op": "dynamic_slice",
+      "start_indices": [
+        0,
+        0,
+        50
+      ],
+      "end_indices": [
+        32,
+        64,
+        100
+      ],
+      "outputs": [
+        null
+      ]
+    },
+    {
+      "_original_op_name": null,
+      "name": null,
+      "depth": 1,
+      "nop": false,
+      "inputs": [
+        null
+      ],
+      "has_profiler": false,
+      "op": "elementwise",
+      "func": "SIGMOID",
+      "args": [
+        null
+      ],
+      "outputs": [
+        null
+      ]
+    },
+    {
+      "_original_op_name": null,
+      "name": null,
+      "depth": 1,
+      "nop": false,
+      "inputs": [
+        null
+      ],
+      "has_profiler": false,
+      "op": "elementwise",
+      "func": "SIGMOID",
+      "args": [
+        null
+      ],
+      "outputs": [
+        null
+      ]
+    },
+    {
+      "_original_op_name": null,
+      "name": null,
+      "depth": 2,
+      "nop": false,
+      "inputs": [
+        null
+      ],
+      "has_profiler": false,
+      "op": "softmax",
+      "dim": 0,
+      "outputs": [
+        null
+      ]
+    },
+    {
+      "_original_op_name": null,
+      "name": null,
+      "depth": 2,
+      "nop": false,
+      "inputs": [
+        null
+      ],
+      "has_profiler": false,
+      "op": "softmax",
+      "dim": 0,
+      "outputs": [
+        null
+      ]
+    },
+    {
+      "_original_op_name": null,
+      "name": null,
+      "depth": 3,
+      "nop": false,
+      "inputs": [
+        null,
+        null
+      ],
+      "has_profiler": false,
+      "op": "elementwise",
+      "func": "ADD",
+      "args": [
+        null,
+        null
+      ],
+      "outputs": [
+        "output"
+      ]
+    }
+  ]
+}

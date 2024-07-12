@@ -1,0 +1,560 @@
+{
+  "Tensors": [
+    {
+      "name": "input_0",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              14
+            ],
+            "symbolic_value": 14
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              14
+            ],
+            "symbolic_value": 14
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              256
+            ],
+            "symbolic_value": 256
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "transposed_conv2d_bias_relu_2"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "input_1",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_1_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              256
+            ],
+            "symbolic_value": 256
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              2
+            ],
+            "symbolic_value": 2
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              2
+            ],
+            "symbolic_value": 2
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              256
+            ],
+            "symbolic_value": 256
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "transposed_conv2d_bias_relu_2"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "input_2",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_2_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              256
+            ],
+            "symbolic_value": 256
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "transposed_conv2d_bias_relu_2"
+      ],
+      "dtype": "float16",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "output_0",
+      "depth": 2,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "output_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        },
+        {
+          "_attrs": {
+            "name": "output_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              28
+            ],
+            "symbolic_value": 28
+          }
+        },
+        {
+          "_attrs": {
+            "name": "output_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              28
+            ],
+            "symbolic_value": 28
+          }
+        },
+        {
+          "_attrs": {
+            "name": "output_0_dim_3",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              256
+            ],
+            "symbolic_value": 256
+          }
+        }
+      ],
+      "src_ops": [
+        "transposed_conv2d_bias_relu_2"
+      ],
+      "dst_ops": [],
+      "dtype": "float16",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    }
+  ],
+  "Operators": [
+    {
+      "_original_op_name": "transposed_conv2d_bias_relu_2",
+      "name": "transposed_conv2d_bias_relu_2",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "input_0",
+        "input_1",
+        "input_2"
+      ],
+      "has_profiler": true,
+      "op": "transposed_conv2d_bias_relu",
+      "stride": 2,
+      "pad": 0,
+      "dilate": 1,
+      "group": 1,
+      "epilogue_alignment": 8,
+      "epilogue": "LinearCombinationRelu",
+      "workspace": 0,
+      "split_k": null,
+      "CO": 256,
+      "KH": 2,
+      "KW": 2,
+      "dim_lower_bounds": [
+        4,
+        14,
+        14,
+        256
+      ],
+      "exec_path": {
+        "NI == 4 && HI == 14 && WI == 14 && CI == 256": "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_8_8"
+      },
+      "outputs": [
+        "output_0"
+      ],
+      "original_name": "transposed_conv2d_bias_relu_2",
+      "op_instance": {
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deef08f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deef3590>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deef3890>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deef0560>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee61fd0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee60f50>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee62de0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee61310>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee61f40>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee61eb0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee61d90>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_32x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee623c0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee630b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee63020>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee62f00>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee634d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec2bd0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee63ce0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec34d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec03e0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec11c0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec1130>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec1010>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_32x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec1610>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec2240>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec21b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec2090>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec2660>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec3920>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec3890>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec3740>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec3ce0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4e000>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4df70>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4de50>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4d790>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4cb30>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4cbc0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4cce0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4c710>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4e2d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4e240>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4e120>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4e870>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4f560>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4f4d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4f3b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_32x4_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4f950>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0c680>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0c5f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0c4d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0caa0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0ff50>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0ffe0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e930>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0fb90>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e840>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0f740>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0f560>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_32x4_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0f680>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0f920>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0f230>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0eff0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0f170>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e7e0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0ed20>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0eab0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0ec00>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0fb60>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0dd00>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0db50>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0dc40>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0f710>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d7c0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d610>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d700>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0f200>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d310>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d160>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d250>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4ec90>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0edb0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dee4c230>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x4_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0ecf0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e330>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df7262d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df768830>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e4b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df726810>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0dd90>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d2e0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0dcd0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df730650>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deec0d10>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e270>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_32x5_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea24080>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df7693a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df727da0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0f080>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea27da0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea25f10>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0c3e0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e630>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea27860>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea25df0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e390>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d790>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_32x6_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea272f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea27b30>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0c380>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e6c0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea26d50>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d850>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea27c50>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df76a990>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea277a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e480>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d3a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0c440>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_32x6_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7caa0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea26b70>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea25d00>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea26e10>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7cfe0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7ccb0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e540>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0c050>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7d4f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7cb60>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0d040>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea27200>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_32x10_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7d970>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7d190>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e720>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e420>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7de20>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7d700>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea27380>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea278f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7f5f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7d430>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e5a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea245c0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x128_64x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7fa40>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7f530>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea242f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7ef90>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7f080>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7d0d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea24440>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7eae0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7ebd0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7d5b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e810>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e660>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x256_64x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e750>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7fe90>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e390>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e1b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e2d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7db50>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7c290>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7c0e0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7c260>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea270b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7edb0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea26a80>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x4_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7f230>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea24110>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7fb00>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7c680>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3d850>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0c1d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df7318e0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e7e0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3d3a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3db50>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea27650>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7f170>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x4_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3ce90>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3d2b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0eb70>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7c320>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3c9b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3d430>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea0e210>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7c1d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3ff20>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3cf20>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7ed20>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7f140>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x4_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3e9f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3d190>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7da30>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3f0e0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3eff0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3c530>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7ec90>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3f650>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3f500>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3e960>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7fd40>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3faa0>",
+        "cutlass_f16_s16816fprop_optimized_f16_256x64_64x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3f9b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3c8f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3fdd0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3dfa0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3fe90>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3eab0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3e120>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3ff50>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3e1b0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3ca40>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3c290>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3c050>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x256_64x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3c230>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7c7a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3e6c0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3c800>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3f350>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e360>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3eba0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3c320>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa04d0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3fe00>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7f380>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e8a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x128_64x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa0950>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa0200>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea24530>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3f950>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa2390>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa0a10>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3e150>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3d760>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa2870>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7ca10>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa2c60>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3c1a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_128x64_64x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3de80>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df72e900>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa0440>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa08c0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa2930>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa0680>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df72d1f0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7e420>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaee120>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7dee0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3f920>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa0590>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x128_64x3_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaee5a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_8_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaedd90>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_8_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea3f890>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_8_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa0110>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_8_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaeea50>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_4_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaee660>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_4_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa25a0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_4_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483dea7ec60>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_4_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaef230>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_2_8": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaeef00>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_2_4": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa2480>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_2_2": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483df72cfb0>",
+        "cutlass_f16_s16816fprop_optimized_f16_64x64_64x5_nhwc_align_2_1": "<cutlass_lib.conv2d_operation.Conv2dOperation object at 0x7483deaa27e0>"
+      }
+    }
+  ]
+}

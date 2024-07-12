@@ -1,0 +1,9 @@
+# conv2d_bias_few_channels_0
+(Tensor(name=conv2d_bias_few_channels_0_0, shape=[4, 112, 112, 64])) 
+= conv2d_bias_few_channels(auto_padding=True, dilate=1, pad=3, stride=2)(
+Tensor(name=input_0, shape=[4, 224, 224, 4]), Tensor(name=input_1, shape=[64, 7, 7, 4]), Tensor(name=input_2, shape=[64]))
+
+# elementwise_1
+(Tensor(name=output_0, shape=[4, 112, 112, 64])) 
+= elementwise(func=FuncEnum.RELU)(
+Tensor(name=conv2d_bias_few_channels_0_0, shape=[4, 112, 112, 64]))

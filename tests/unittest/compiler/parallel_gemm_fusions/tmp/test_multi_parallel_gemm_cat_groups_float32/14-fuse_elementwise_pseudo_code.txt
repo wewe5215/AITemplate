@@ -1,0 +1,113 @@
+# fused_elementwise_21
+(Tensor(name=elementwise_0_0, shape=[256, 120])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_2, shape=[256, 120]))
+
+# fused_elementwise_22
+(Tensor(name=elementwise_1_0, shape=[256, 120])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_3, shape=[256, 120]))
+
+# fused_elementwise_23
+(Tensor(name=elementwise_2_0, shape=[256, 120])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_4, shape=[256, 120]))
+
+# fused_elementwise_24
+(Tensor(name=elementwise_3_0, shape=[256, 120])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_5, shape=[256, 120]))
+
+# fused_elementwise_25
+(Tensor(name=elementwise_4_0, shape=[256, 72])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_6, shape=[256, 72]))
+
+# fused_elementwise_26
+(Tensor(name=elementwise_5_0, shape=[256, 72])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_7, shape=[256, 72]))
+
+# fused_elementwise_27
+(Tensor(name=elementwise_6_0, shape=[256, 64])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_0, shape=[256, 64]))
+
+# fused_elementwise_28
+(Tensor(name=elementwise_7_0, shape=[256, 64])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_1, shape=[256, 64]))
+
+# fused_elementwise_29
+(Tensor(name=elementwise_8_0, shape=[256, 64])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_8, shape=[256, 64]))
+
+# fused_elementwise_30
+(Tensor(name=elementwise_9_0, shape=[256, 64])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_9, shape=[256, 64]))
+
+# gemm_rcr_bias_10
+(Tensor(name=gemm_rcr_bias_10_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_6_0, shape=[256, 64]), Tensor(name=w_0, shape=[128, 64], data=(32768 bytes)), Tensor(name=b_0, shape=[128], data=(512 bytes)))
+
+# gemm_rcr_bias_11
+(Tensor(name=gemm_rcr_bias_11_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_7_0, shape=[256, 64]), Tensor(name=w_1, shape=[128, 64], data=(32768 bytes)), Tensor(name=b_1, shape=[128], data=(512 bytes)))
+
+# gemm_rcr_bias_12
+(Tensor(name=gemm_rcr_bias_12_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_0_0, shape=[256, 120]), Tensor(name=w_2, shape=[128, 120], data=(61440 bytes)), Tensor(name=b_2, shape=[128], data=(512 bytes)))
+
+# gemm_rcr_bias_13
+(Tensor(name=gemm_rcr_bias_13_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_1_0, shape=[256, 120]), Tensor(name=w_3, shape=[128, 120], data=(61440 bytes)), Tensor(name=b_3, shape=[128], data=(512 bytes)))
+
+# gemm_rcr_bias_14
+(Tensor(name=gemm_rcr_bias_14_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_2_0, shape=[256, 120]), Tensor(name=w_4, shape=[128, 120], data=(61440 bytes)), Tensor(name=b_4, shape=[128], data=(512 bytes)))
+
+# gemm_rcr_bias_15
+(Tensor(name=gemm_rcr_bias_15_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_3_0, shape=[256, 120]), Tensor(name=w_5, shape=[128, 120], data=(61440 bytes)), Tensor(name=b_5, shape=[128], data=(512 bytes)))
+
+# gemm_rcr_bias_16
+(Tensor(name=gemm_rcr_bias_16_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_4_0, shape=[256, 72]), Tensor(name=w_6, shape=[128, 72], data=(36864 bytes)), Tensor(name=b_6, shape=[128], data=(512 bytes)))
+
+# gemm_rcr_bias_17
+(Tensor(name=gemm_rcr_bias_17_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_5_0, shape=[256, 72]), Tensor(name=w_7, shape=[128, 72], data=(36864 bytes)), Tensor(name=b_7, shape=[128], data=(512 bytes)))
+
+# gemm_rcr_bias_18
+(Tensor(name=gemm_rcr_bias_18_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_8_0, shape=[256, 64]), Tensor(name=w_8, shape=[128, 64], data=(32768 bytes)), Tensor(name=b_8, shape=[128], data=(512 bytes)))
+
+# gemm_rcr_bias_19
+(Tensor(name=gemm_rcr_bias_19_0, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=elementwise_9_0, shape=[256, 64]), Tensor(name=w_9, shape=[128, 64], data=(32768 bytes)), Tensor(name=b_9, shape=[128], data=(512 bytes)))
+
+# concatenate_20
+(Tensor(name=y, shape=[256, 1280])) 
+= concatenate(dim=1)(
+Tensor(name=gemm_rcr_bias_10_0, shape=[256, 128]),
+Tensor(name=gemm_rcr_bias_11_0, shape=[256, 128]),
+Tensor(name=gemm_rcr_bias_12_0, shape=[256, 128]),
+Tensor(name=gemm_rcr_bias_13_0, shape=[256, 128]),
+Tensor(name=gemm_rcr_bias_14_0, shape=[256, 128]),
+Tensor(name=gemm_rcr_bias_15_0, shape=[256, 128]),
+Tensor(name=gemm_rcr_bias_16_0, shape=[256, 128]),
+Tensor(name=gemm_rcr_bias_17_0, shape=[256, 128]),
+Tensor(name=gemm_rcr_bias_18_0, shape=[256, 128]),
+Tensor(name=gemm_rcr_bias_19_0, shape=[256, 128]))

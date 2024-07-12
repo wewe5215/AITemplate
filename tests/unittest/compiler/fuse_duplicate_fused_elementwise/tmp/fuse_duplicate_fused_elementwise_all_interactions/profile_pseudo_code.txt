@@ -1,0 +1,47 @@
+# fused_elementwise_14
+(Tensor(name=elementwise_0_0, shape=[32, 64, 100]), Tensor(name=concatenate_2_0, shape=[64, 64, 100]), Tensor(name=elementwise_3_0, shape=[32, 64, 100])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# concatenate_2
+(Tensor(name=concatenate_2_0, shape=[64, 64, 100])) 
+= concatenate(dim=0)(
+Tensor(name=input_p, shape=[32, 64, 100]))
+
+# fused_elementwise_18
+(Tensor(name=concatenate_6_0, shape=[64, 64, 100])) 
+= fused_elementwise(func=[<FuncEnum.RELU: 18>])(
+Tensor(name=input_z, shape=[32, 64, 100]))
+
+# fused_elementwise_17
+(Tensor(name=concatenate_6_0, shape=[64, 64, 100])) 
+= fused_elementwise(func=[<FuncEnum.GELU: 23>])(
+Tensor(name=input_x, shape=[32, 64, 100]))
+
+# concatenate_8
+(Tensor(name=concatenate_8_0, shape=[64, 64, 100])) 
+= concatenate(dim=0)(
+Tensor(name=elementwise_0_0, shape=[32, 64, 100]))
+
+# fused_elementwise_19
+(Tensor(name=concatenate_8_0, shape=[64, 64, 100])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=elementwise_0_0, shape=[32, 64, 100]))
+
+# softmax_10
+(Tensor(name=softmax_10_0, shape=[32, 64, 100])) 
+= softmax({'dim': 0})(
+Tensor(name=elementwise_3_0, shape=[32, 64, 100]))
+
+# concatenate_11
+(Tensor(name=concatenate_11_0, shape=[64, 64, 100])) 
+= concatenate(dim=0)(
+Tensor(name=softmax_10_0, shape=[32, 64, 100]), Tensor(name=softmax_10_0, shape=[32, 64, 100]))
+
+# fused_elementwise_20
+(Tensor(name=output, shape=[64, 64, 100])) 
+= fused_elementwise(func=[<FuncEnum.ADD: 1>, <FuncEnum.ADD: 1>, <FuncEnum.ADD: 1>])(
+Tensor(name=concatenate_8_0, shape=[64, 64, 100]),
+Tensor(name=concatenate_2_0, shape=[64, 64, 100]),
+Tensor(name=concatenate_11_0, shape=[64, 64, 100]),
+Tensor(name=concatenate_6_0, shape=[64, 64, 100]))

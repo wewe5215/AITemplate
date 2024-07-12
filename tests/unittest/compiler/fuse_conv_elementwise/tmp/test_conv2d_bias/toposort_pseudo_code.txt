@@ -1,0 +1,9 @@
+# None
+(Tensor(name=None, shape=[1, 28, 28, 256])) 
+= conv2d(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=input_0, shape=[1, 28, 28, 128]), Tensor(name=input_1, shape=[256, 3, 3, 128]))
+
+# None
+(Tensor(name=output_0, shape=[1, 28, 28, 256])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 28, 28, 256]), Tensor(name=input_2, shape=[256]))

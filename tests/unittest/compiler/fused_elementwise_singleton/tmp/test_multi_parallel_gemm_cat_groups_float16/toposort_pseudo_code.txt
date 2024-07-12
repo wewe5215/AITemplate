@@ -1,0 +1,69 @@
+# None
+(Tensor(name=None, shape=[256, 120])) 
+= elementwise(func=FuncEnum.TANH)(
+Tensor(name=x_2, shape=[256, 120]))
+
+# None
+(Tensor(name=None, shape=[256, 72])) 
+= elementwise(func=FuncEnum.TANH)(
+Tensor(name=x_3, shape=[256, 72]))
+
+# None
+(Tensor(name=None, shape=[256, 72])) 
+= elementwise(func=FuncEnum.TANH)(
+Tensor(name=x_4, shape=[256, 72]))
+
+# None
+(Tensor(name=None, shape=[256, 64])) 
+= elementwise(func=FuncEnum.TANH)(
+Tensor(name=x_0, shape=[256, 64]))
+
+# None
+(Tensor(name=None, shape=[256, 64])) 
+= elementwise(func=FuncEnum.TANH)(
+Tensor(name=x_1, shape=[256, 64]))
+
+# None
+(Tensor(name=None, shape=[256, 64])) 
+= elementwise(func=FuncEnum.TANH)(
+Tensor(name=x_5, shape=[256, 64]))
+
+# None
+(Tensor(name=None, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[256, 64]), Tensor(name=w_0, shape=[128, 64]), Tensor(name=b_0, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[256, 64]), Tensor(name=w_1, shape=[128, 64]), Tensor(name=b_1, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[256, 120]), Tensor(name=w_2, shape=[128, 120]), Tensor(name=b_2, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[256, 72]), Tensor(name=w_3, shape=[128, 72]), Tensor(name=b_3, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[256, 72]), Tensor(name=w_4, shape=[128, 72]), Tensor(name=b_4, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[256, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[256, 64]), Tensor(name=w_5, shape=[128, 64]), Tensor(name=b_5, shape=[128]))
+
+# None
+(Tensor(name=y, shape=[256, 768])) 
+= concatenate(dim=1)(
+Tensor(name=None, shape=[256, 128]),
+Tensor(name=None, shape=[256, 128]),
+Tensor(name=None, shape=[256, 128]),
+Tensor(name=None, shape=[256, 128]),
+Tensor(name=None, shape=[256, 128]),
+Tensor(name=None, shape=[256, 128]))

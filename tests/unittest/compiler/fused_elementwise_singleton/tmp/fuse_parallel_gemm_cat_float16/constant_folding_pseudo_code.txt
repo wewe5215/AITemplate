@@ -1,0 +1,35 @@
+# split_0
+(Tensor(name=split_0_2, shape=[input_batch, 64]),
+Tensor(name=split_0_3, shape=[input_batch, 64]),
+Tensor(name=split_0_0, shape=[input_batch, 64]),
+Tensor(name=split_0_1, shape=[input_batch, 64])) 
+= split(split_sizes=[64, 64, 64, 64]], dim=1])(
+Tensor(name=X, shape=[input_batch, 256]))
+
+# gemm_rcr_bias_1
+(Tensor(name=output1, shape=[input_batch, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=split_0_2, shape=[input_batch, 64]), Tensor(name=W0, shape=[128, 64], data=(16384 bytes)), Tensor(name=B0, shape=[128], data=(256 bytes)))
+
+# gemm_rcr_bias_1
+(Tensor(name=output2, shape=[input_batch, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=split_0_3, shape=[input_batch, 64]), Tensor(name=W1, shape=[128, 64], data=(16384 bytes)), Tensor(name=B1, shape=[128], data=(256 bytes)))
+
+# gemm_rcr_bias_1
+(Tensor(name=output3, shape=[input_batch, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=split_0_0, shape=[input_batch, 64]), Tensor(name=W2, shape=[128, 64], data=(16384 bytes)), Tensor(name=B2, shape=[128], data=(256 bytes)))
+
+# gemm_rcr_bias_1
+(Tensor(name=output4, shape=[input_batch, 128])) 
+= gemm_rcr_bias()(
+Tensor(name=split_0_1, shape=[input_batch, 64]), Tensor(name=W3, shape=[128, 64], data=(16384 bytes)), Tensor(name=B3, shape=[128], data=(256 bytes)))
+
+# concatenate_5
+(Tensor(name=output0, shape=[input_batch, 512])) 
+= concatenate(dim=1)(
+Tensor(name=output1, shape=[input_batch, 128]),
+Tensor(name=output2, shape=[input_batch, 128]),
+Tensor(name=output3, shape=[input_batch, 128]),
+Tensor(name=output4, shape=[input_batch, 128]))

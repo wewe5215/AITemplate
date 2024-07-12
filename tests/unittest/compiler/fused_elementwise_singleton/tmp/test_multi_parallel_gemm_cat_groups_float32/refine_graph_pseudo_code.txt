@@ -1,0 +1,135 @@
+# fused_elementwise_21
+(Tensor(name=concatenate_31_0, shape=[256, 480])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_2, shape=[256, 120]))
+
+# fused_elementwise_22
+(Tensor(name=concatenate_31_0, shape=[256, 480])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_3, shape=[256, 120]))
+
+# fused_elementwise_23
+(Tensor(name=concatenate_31_0, shape=[256, 480])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_4, shape=[256, 120]))
+
+# fused_elementwise_24
+(Tensor(name=concatenate_31_0, shape=[256, 480])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_5, shape=[256, 120]))
+
+# fused_elementwise_25
+(Tensor(name=concatenate_33_0, shape=[256, 144])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_6, shape=[256, 72]))
+
+# fused_elementwise_26
+(Tensor(name=concatenate_33_0, shape=[256, 144])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_7, shape=[256, 72]))
+
+# fused_elementwise_27
+(Tensor(name=concatenate_35_0, shape=[256, 128])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_0, shape=[256, 64]))
+
+# fused_elementwise_28
+(Tensor(name=concatenate_35_0, shape=[256, 128])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_1, shape=[256, 64]))
+
+# fused_elementwise_27
+(Tensor(name=concatenate_37_0, shape=[256, 128])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_8, shape=[256, 64]))
+
+# fused_elementwise_28
+(Tensor(name=concatenate_37_0, shape=[256, 128])) 
+= fused_elementwise(func=[<FuncEnum.TANH: 5>])(
+Tensor(name=x_9, shape=[256, 64]))
+
+# concatenate_39
+(Tensor(name=concatenate_39_0, shape=[512, 120])) 
+= concatenate(dim=0)(
+Tensor(name=w_2, shape=[128, 120], data=(61440 bytes)),
+Tensor(name=w_3, shape=[128, 120], data=(61440 bytes)),
+Tensor(name=w_4, shape=[128, 120], data=(61440 bytes)),
+Tensor(name=w_5, shape=[128, 120], data=(61440 bytes)))
+
+# permute021_41
+(Tensor(name=permute021_41_0, shape=[4, 120, 128])) 
+= permute021()(
+Tensor(name=concatenate_39_0, shape=[512, 120]))
+
+# concatenate_42
+(Tensor(name=concatenate_42_0, shape=[256, 72])) 
+= concatenate(dim=0)(
+Tensor(name=w_6, shape=[128, 72], data=(36864 bytes)), Tensor(name=w_7, shape=[128, 72], data=(36864 bytes)))
+
+# permute021_44
+(Tensor(name=permute021_44_0, shape=[2, 72, 128])) 
+= permute021()(
+Tensor(name=concatenate_42_0, shape=[256, 72]))
+
+# concatenate_45
+(Tensor(name=concatenate_45_0, shape=[256, 64])) 
+= concatenate(dim=0)(
+Tensor(name=w_0, shape=[128, 64], data=(32768 bytes)), Tensor(name=w_1, shape=[128, 64], data=(32768 bytes)))
+
+# permute021_47
+(Tensor(name=permute021_47_0, shape=[2, 64, 128])) 
+= permute021()(
+Tensor(name=concatenate_45_0, shape=[256, 64]))
+
+# concatenate_45
+(Tensor(name=concatenate_48_0, shape=[256, 64])) 
+= concatenate(dim=0)(
+Tensor(name=w_8, shape=[128, 64], data=(32768 bytes)), Tensor(name=w_9, shape=[128, 64], data=(32768 bytes)))
+
+# permute021_47
+(Tensor(name=permute021_50_0, shape=[2, 64, 128])) 
+= permute021()(
+Tensor(name=concatenate_48_0, shape=[256, 64]))
+
+# concatenate_51
+(Tensor(name=concatenate_51_0, shape=[256])) 
+= concatenate(dim=0)(
+Tensor(name=b_0, shape=[128], data=(512 bytes)), Tensor(name=b_1, shape=[128], data=(512 bytes)))
+
+# concatenate_55
+(Tensor(name=concatenate_55_0, shape=[512])) 
+= concatenate(dim=0)(
+Tensor(name=b_2, shape=[128], data=(512 bytes)),
+Tensor(name=b_3, shape=[128], data=(512 bytes)),
+Tensor(name=b_4, shape=[128], data=(512 bytes)),
+Tensor(name=b_5, shape=[128], data=(512 bytes)))
+
+# concatenate_51
+(Tensor(name=concatenate_59_0, shape=[256])) 
+= concatenate(dim=0)(
+Tensor(name=b_6, shape=[128], data=(512 bytes)), Tensor(name=b_7, shape=[128], data=(512 bytes)))
+
+# concatenate_51
+(Tensor(name=concatenate_63_0, shape=[256])) 
+= concatenate(dim=0)(
+Tensor(name=b_8, shape=[128], data=(512 bytes)), Tensor(name=b_9, shape=[128], data=(512 bytes)))
+
+# perm102_bmm_rrr_bias_53
+(Tensor(name=y, shape=[256, 1280])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=concatenate_35_0, shape=[256, 128]), Tensor(name=permute021_47_0, shape=[2, 64, 128]), Tensor(name=concatenate_51_0, shape=[256]))
+
+# perm102_bmm_rrr_bias_57
+(Tensor(name=y, shape=[256, 1280])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=concatenate_31_0, shape=[256, 480]), Tensor(name=permute021_41_0, shape=[4, 120, 128]), Tensor(name=concatenate_55_0, shape=[512]))
+
+# perm102_bmm_rrr_bias_61
+(Tensor(name=y, shape=[256, 1280])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=concatenate_33_0, shape=[256, 144]), Tensor(name=permute021_44_0, shape=[2, 72, 128]), Tensor(name=concatenate_59_0, shape=[256]))
+
+# perm102_bmm_rrr_bias_65
+(Tensor(name=y, shape=[256, 1280])) 
+= perm102_bmm_rrr_bias()(
+Tensor(name=concatenate_37_0, shape=[256, 128]), Tensor(name=permute021_50_0, shape=[2, 64, 128]), Tensor(name=concatenate_63_0, shape=[256]))

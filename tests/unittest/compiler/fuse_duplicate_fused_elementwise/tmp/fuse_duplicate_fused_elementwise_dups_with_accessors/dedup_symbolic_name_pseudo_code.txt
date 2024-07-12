@@ -1,0 +1,4 @@
+# fused_elementwise_3
+(Tensor(name=output, shape=[64, 64, 100]), Tensor(name=output, shape=[64, 64, 100])) 
+= fused_elementwise(func=[<FuncEnum.SIGMOID: 15>])(
+Tensor(name=input_x, shape=[32, 64, 100]))
