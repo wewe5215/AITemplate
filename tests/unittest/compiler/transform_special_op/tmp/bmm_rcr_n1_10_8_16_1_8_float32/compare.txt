@@ -1,0 +1,161 @@
+Comparing 00-remove_elementwise_no_ops_pseudo_code.txt with 01-dedup_make_jagged_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 01-dedup_make_jagged_ops_pseudo_code.txt with 02-fuse_permute_bmm_and_gemm_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 02-fuse_permute_bmm_and_gemm_pseudo_code.txt with 03-fuse_bmm_permute_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 03-fuse_bmm_permute_pseudo_code.txt with 04-fuse_expand_bmm_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 04-fuse_expand_bmm_pseudo_code.txt with 05-transform_odd_alignment_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 05-transform_odd_alignment_pseudo_code.txt with 06-fuse_conv_elementwise_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 06-fuse_conv_elementwise_pseudo_code.txt with 07-fuse_single_source_parallel_gemms_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 07-fuse_single_source_parallel_gemms_pseudo_code.txt with 08-fuse_mm_elementwise_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 08-fuse_mm_elementwise_pseudo_code.txt with 09-fuse_mm_reshape_permute_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 09-fuse_mm_reshape_permute_pseudo_code.txt with 10-move_view_op_before_concat_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 10-move_view_op_before_concat_pseudo_code.txt with 11-merge_view_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 11-merge_view_ops_pseudo_code.txt with 12-transform_memory_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 12-transform_memory_ops_pseudo_code.txt with 13-fuse_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 13-fuse_ops_pseudo_code.txt with 14-fuse_elementwise_pseudo_code.txt:
+--- /home/wewe5215/Desktop/AITemplate/tests/unittest/compiler/transform_special_op/tmp/bmm_rcr_n1_10_8_16_1_8_float32/13-fuse_ops_pseudo_code.txt
++++ /home/wewe5215/Desktop/AITemplate/tests/unittest/compiler/transform_special_op/tmp/bmm_rcr_n1_10_8_16_1_8_float32/14-fuse_elementwise_pseudo_code.txt
+@@ -3,7 +3,7 @@
+ = bmm_rcr()(
+ Tensor(name=input_0, shape=[10, input_0_dim_1, 8]), Tensor(name=input_1, shape=[10, 1, 8]))
+ 
+-# elementwise_2
++# fused_elementwise_3
+ (Tensor(name=output_0, shape=[10, input_0_dim_1, 1])) 
+-= elementwise(func=FuncEnum.COS)(
++= fused_elementwise(func=[])(
+ Tensor(name=bmm_rcr_tensor, shape=[10, input_0_dim_1, 1]))
+
+================================================================================
+
+Comparing 14-fuse_elementwise_pseudo_code.txt with 15-fuse_parallel_gemms_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 15-fuse_parallel_gemms_pseudo_code.txt with 16-fuse_group_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 16-fuse_group_ops_pseudo_code.txt with 17-transform_special_ops_pseudo_code.txt:
+--- /home/wewe5215/Desktop/AITemplate/tests/unittest/compiler/transform_special_op/tmp/bmm_rcr_n1_10_8_16_1_8_float32/16-fuse_group_ops_pseudo_code.txt
++++ /home/wewe5215/Desktop/AITemplate/tests/unittest/compiler/transform_special_op/tmp/bmm_rcr_n1_10_8_16_1_8_float32/17-transform_special_ops_pseudo_code.txt
+@@ -1,6 +1,6 @@
+-# bmm_rcr_0
++# bmm_rcr_n1_4
+ (Tensor(name=bmm_rcr_tensor, shape=[10, input_0_dim_1, 1])) 
+-= bmm_rcr()(
++= bmm_rcr_n1()(
+ Tensor(name=input_0, shape=[10, input_0_dim_1, 8]), Tensor(name=input_1, shape=[10, 1, 8]))
+ 
+ # fused_elementwise_3
+
+================================================================================
+
+Comparing 17-transform_special_ops_pseudo_code.txt with 18-apply_padding_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 18-apply_padding_pseudo_code.txt with 19-move_view_op_before_concat_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 19-move_view_op_before_concat_pseudo_code.txt with 20-transform_memory_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 20-transform_memory_ops_pseudo_code.txt with 21-transform_strided_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 21-transform_strided_ops_pseudo_code.txt with 22-split_large_slice_scatter_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 22-split_large_slice_scatter_ops_pseudo_code.txt with 23-split_large_concat_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 23-split_large_concat_ops_pseudo_code.txt with 24-split_large_split_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 24-split_large_split_ops_pseudo_code.txt with 25-transform_permute_to_reshape_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 25-transform_permute_to_reshape_pseudo_code.txt with 26-transform_memory_ops_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 26-transform_memory_ops_pseudo_code.txt with 27-eliminate_permutations_pseudo_code.txt:
+
+
+================================================================================
+
+Comparing 27-eliminate_permutations_pseudo_code.txt with 28-fuse_duplicate_fused_elementwise_pseudo_code.txt:
+
+
+================================================================================
+
