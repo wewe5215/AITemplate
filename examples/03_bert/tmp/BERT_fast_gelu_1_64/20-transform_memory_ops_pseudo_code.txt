@@ -1,0 +1,671 @@
+# gemm_rcr_bias_0
+(Tensor(name=gemm_rcr_bias_0_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=input, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_0_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_0_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_1
+(Tensor(name=reshape_1_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_0_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_2
+(Tensor(name=flash_attention_2_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_1_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_0_attention_self_cu_length, shape=[2]))
+
+# reshape_3
+(Tensor(name=reshape_3_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_2_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_4
+(Tensor(name=gemm_rcr_bias_add_4_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_3_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_0_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_0_attention_self_proj_bias, shape=[768]),
+Tensor(name=input, shape=[1, 64, 768]))
+
+# reshape_5
+(Tensor(name=reshape_5_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_4_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_6
+(Tensor(name=layernorm_6_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_5_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_0_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_0_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_7
+(Tensor(name=gemm_rcr_bias_fast_gelu_7_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_6_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_0_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_0_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_8
+(Tensor(name=gemm_rcr_bias_add_8_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_7_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_0_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_0_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_6_0, shape=[1, 64, 768]))
+
+# layernorm_9
+(Tensor(name=layernorm_9_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_8_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_0_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_0_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_10
+(Tensor(name=gemm_rcr_bias_10_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_9_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_1_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_1_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_11
+(Tensor(name=reshape_11_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_10_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_12
+(Tensor(name=flash_attention_12_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_11_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_1_attention_self_cu_length, shape=[2]))
+
+# reshape_13
+(Tensor(name=reshape_13_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_12_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_14
+(Tensor(name=gemm_rcr_bias_add_14_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_13_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_1_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_1_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_9_0, shape=[1, 64, 768]))
+
+# reshape_15
+(Tensor(name=reshape_15_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_14_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_16
+(Tensor(name=layernorm_16_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_15_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_1_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_1_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_17
+(Tensor(name=gemm_rcr_bias_fast_gelu_17_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_16_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_1_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_1_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_18
+(Tensor(name=gemm_rcr_bias_add_18_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_17_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_1_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_1_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_16_0, shape=[1, 64, 768]))
+
+# layernorm_19
+(Tensor(name=layernorm_19_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_18_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_1_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_1_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_20
+(Tensor(name=gemm_rcr_bias_20_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_19_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_2_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_2_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_21
+(Tensor(name=reshape_21_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_20_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_22
+(Tensor(name=flash_attention_22_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_21_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_2_attention_self_cu_length, shape=[2]))
+
+# reshape_23
+(Tensor(name=reshape_23_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_22_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_24
+(Tensor(name=gemm_rcr_bias_add_24_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_23_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_2_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_2_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_19_0, shape=[1, 64, 768]))
+
+# reshape_25
+(Tensor(name=reshape_25_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_24_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_26
+(Tensor(name=layernorm_26_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_25_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_2_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_2_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_27
+(Tensor(name=gemm_rcr_bias_fast_gelu_27_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_26_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_2_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_2_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_28
+(Tensor(name=gemm_rcr_bias_add_28_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_27_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_2_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_2_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_26_0, shape=[1, 64, 768]))
+
+# layernorm_29
+(Tensor(name=layernorm_29_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_28_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_2_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_2_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_30
+(Tensor(name=gemm_rcr_bias_30_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_29_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_3_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_3_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_31
+(Tensor(name=reshape_31_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_30_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_32
+(Tensor(name=flash_attention_32_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_31_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_3_attention_self_cu_length, shape=[2]))
+
+# reshape_33
+(Tensor(name=reshape_33_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_32_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_34
+(Tensor(name=gemm_rcr_bias_add_34_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_33_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_3_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_3_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_29_0, shape=[1, 64, 768]))
+
+# reshape_35
+(Tensor(name=reshape_35_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_34_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_36
+(Tensor(name=layernorm_36_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_35_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_3_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_3_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_37
+(Tensor(name=gemm_rcr_bias_fast_gelu_37_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_36_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_3_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_3_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_38
+(Tensor(name=gemm_rcr_bias_add_38_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_37_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_3_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_3_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_36_0, shape=[1, 64, 768]))
+
+# layernorm_39
+(Tensor(name=layernorm_39_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_38_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_3_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_3_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_40
+(Tensor(name=gemm_rcr_bias_40_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_39_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_4_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_4_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_41
+(Tensor(name=reshape_41_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_40_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_42
+(Tensor(name=flash_attention_42_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_41_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_4_attention_self_cu_length, shape=[2]))
+
+# reshape_43
+(Tensor(name=reshape_43_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_42_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_44
+(Tensor(name=gemm_rcr_bias_add_44_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_43_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_4_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_4_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_39_0, shape=[1, 64, 768]))
+
+# reshape_45
+(Tensor(name=reshape_45_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_44_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_46
+(Tensor(name=layernorm_46_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_45_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_4_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_4_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_47
+(Tensor(name=gemm_rcr_bias_fast_gelu_47_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_46_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_4_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_4_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_48
+(Tensor(name=gemm_rcr_bias_add_48_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_47_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_4_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_4_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_46_0, shape=[1, 64, 768]))
+
+# layernorm_49
+(Tensor(name=layernorm_49_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_48_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_4_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_4_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_50
+(Tensor(name=gemm_rcr_bias_50_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_49_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_5_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_5_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_51
+(Tensor(name=reshape_51_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_50_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_52
+(Tensor(name=flash_attention_52_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_51_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_5_attention_self_cu_length, shape=[2]))
+
+# reshape_53
+(Tensor(name=reshape_53_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_52_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_54
+(Tensor(name=gemm_rcr_bias_add_54_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_53_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_5_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_5_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_49_0, shape=[1, 64, 768]))
+
+# reshape_55
+(Tensor(name=reshape_55_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_54_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_56
+(Tensor(name=layernorm_56_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_55_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_5_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_5_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_57
+(Tensor(name=gemm_rcr_bias_fast_gelu_57_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_56_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_5_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_5_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_58
+(Tensor(name=gemm_rcr_bias_add_58_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_57_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_5_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_5_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_56_0, shape=[1, 64, 768]))
+
+# layernorm_59
+(Tensor(name=layernorm_59_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_58_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_5_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_5_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_60
+(Tensor(name=gemm_rcr_bias_60_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_59_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_6_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_6_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_61
+(Tensor(name=reshape_61_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_60_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_62
+(Tensor(name=flash_attention_62_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_61_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_6_attention_self_cu_length, shape=[2]))
+
+# reshape_63
+(Tensor(name=reshape_63_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_62_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_64
+(Tensor(name=gemm_rcr_bias_add_64_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_63_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_6_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_6_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_59_0, shape=[1, 64, 768]))
+
+# reshape_65
+(Tensor(name=reshape_65_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_64_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_66
+(Tensor(name=layernorm_66_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_65_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_6_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_6_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_67
+(Tensor(name=gemm_rcr_bias_fast_gelu_67_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_66_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_6_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_6_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_68
+(Tensor(name=gemm_rcr_bias_add_68_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_67_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_6_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_6_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_66_0, shape=[1, 64, 768]))
+
+# layernorm_69
+(Tensor(name=layernorm_69_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_68_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_6_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_6_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_70
+(Tensor(name=gemm_rcr_bias_70_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_69_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_7_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_7_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_71
+(Tensor(name=reshape_71_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_70_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_72
+(Tensor(name=flash_attention_72_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_71_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_7_attention_self_cu_length, shape=[2]))
+
+# reshape_73
+(Tensor(name=reshape_73_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_72_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_74
+(Tensor(name=gemm_rcr_bias_add_74_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_73_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_7_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_7_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_69_0, shape=[1, 64, 768]))
+
+# reshape_75
+(Tensor(name=reshape_75_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_74_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_76
+(Tensor(name=layernorm_76_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_75_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_7_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_7_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_77
+(Tensor(name=gemm_rcr_bias_fast_gelu_77_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_76_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_7_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_7_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_78
+(Tensor(name=gemm_rcr_bias_add_78_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_77_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_7_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_7_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_76_0, shape=[1, 64, 768]))
+
+# layernorm_79
+(Tensor(name=layernorm_79_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_78_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_7_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_7_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_80
+(Tensor(name=gemm_rcr_bias_80_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_79_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_8_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_8_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_81
+(Tensor(name=reshape_81_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_80_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_82
+(Tensor(name=flash_attention_82_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_81_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_8_attention_self_cu_length, shape=[2]))
+
+# reshape_83
+(Tensor(name=reshape_83_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_82_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_84
+(Tensor(name=gemm_rcr_bias_add_84_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_83_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_8_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_8_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_79_0, shape=[1, 64, 768]))
+
+# reshape_85
+(Tensor(name=reshape_85_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_84_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_86
+(Tensor(name=layernorm_86_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_85_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_8_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_8_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_87
+(Tensor(name=gemm_rcr_bias_fast_gelu_87_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_86_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_8_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_8_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_88
+(Tensor(name=gemm_rcr_bias_add_88_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_87_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_8_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_8_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_86_0, shape=[1, 64, 768]))
+
+# layernorm_89
+(Tensor(name=layernorm_89_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_88_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_8_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_8_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_90
+(Tensor(name=gemm_rcr_bias_90_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_89_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_9_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_9_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_91
+(Tensor(name=reshape_91_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_90_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_92
+(Tensor(name=flash_attention_92_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_91_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_9_attention_self_cu_length, shape=[2]))
+
+# reshape_93
+(Tensor(name=reshape_93_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_92_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_94
+(Tensor(name=gemm_rcr_bias_add_94_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_93_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_9_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_9_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_89_0, shape=[1, 64, 768]))
+
+# reshape_95
+(Tensor(name=reshape_95_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_94_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_96
+(Tensor(name=layernorm_96_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_95_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_9_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_9_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_97
+(Tensor(name=gemm_rcr_bias_fast_gelu_97_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_96_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_9_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_9_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_98
+(Tensor(name=gemm_rcr_bias_add_98_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_97_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_9_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_9_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_96_0, shape=[1, 64, 768]))
+
+# layernorm_99
+(Tensor(name=layernorm_99_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_98_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_9_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_9_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_100
+(Tensor(name=gemm_rcr_bias_100_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_99_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_10_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_10_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_101
+(Tensor(name=reshape_101_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_100_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_102
+(Tensor(name=flash_attention_102_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_101_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_10_attention_self_cu_length, shape=[2]))
+
+# reshape_103
+(Tensor(name=reshape_103_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_102_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_104
+(Tensor(name=gemm_rcr_bias_add_104_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_103_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_10_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_10_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_99_0, shape=[1, 64, 768]))
+
+# reshape_105
+(Tensor(name=reshape_105_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_104_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_106
+(Tensor(name=layernorm_106_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_105_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_10_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_10_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_107
+(Tensor(name=gemm_rcr_bias_fast_gelu_107_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_106_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_10_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_10_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_108
+(Tensor(name=gemm_rcr_bias_add_108_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_107_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_10_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_10_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_106_0, shape=[1, 64, 768]))
+
+# layernorm_109
+(Tensor(name=layernorm_109_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_108_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_10_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_10_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_110
+(Tensor(name=gemm_rcr_bias_110_0, shape=[1, 64, 2304])) 
+= gemm_rcr_bias()(
+Tensor(name=layernorm_109_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_11_attention_self_qkv_weight, shape=[2304, 768]), Tensor(name=bert_encoder_layer_11_attention_self_qkv_bias, shape=[2304]))
+
+# reshape_111
+(Tensor(name=reshape_111_0, shape=[64, 3, 12, 64])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_110_0, shape=[1, 64, 2304]), shape=[64, 3, 12, 64])
+
+# flash_attention_112
+(Tensor(name=flash_attention_112_0, shape=[64, 12, 64])) 
+= flash_attention(batch_size=1, dropout=0.0, max_seq_len=64, causal=False)(
+Tensor(name=reshape_111_0, shape=[64, 3, 12, 64]), Tensor(name=bert_encoder_layer_11_attention_self_cu_length, shape=[2]))
+
+# reshape_113
+(Tensor(name=reshape_113_0, shape=[64, 768])) 
+= reshape()(
+Tensor(name=flash_attention_112_0, shape=[64, 12, 64]), shape=[64, 768])
+
+# gemm_rcr_bias_add_114
+(Tensor(name=gemm_rcr_bias_add_114_0, shape=[64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=reshape_113_0, shape=[64, 768]),
+Tensor(name=bert_encoder_layer_11_attention_self_proj_weight, shape=[768, 768]),
+Tensor(name=bert_encoder_layer_11_attention_self_proj_bias, shape=[768]),
+Tensor(name=layernorm_109_0, shape=[1, 64, 768]))
+
+# reshape_115
+(Tensor(name=reshape_115_0, shape=[1, 64, 768])) 
+= reshape()(
+Tensor(name=gemm_rcr_bias_add_114_0, shape=[64, 768]), shape=[1, 64, 768])
+
+# layernorm_116
+(Tensor(name=layernorm_116_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=reshape_115_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_11_attention_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_11_attention_output_LayerNorm_bias, shape=[768]))
+
+# gemm_rcr_bias_fast_gelu_117
+(Tensor(name=gemm_rcr_bias_fast_gelu_117_0, shape=[1, 64, 3072])) 
+= gemm_rcr_bias_fast_gelu()(
+Tensor(name=layernorm_116_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_11_intermediate_dense_weight, shape=[3072, 768]), Tensor(name=bert_encoder_layer_11_intermediate_dense_bias, shape=[3072]))
+
+# gemm_rcr_bias_add_118
+(Tensor(name=gemm_rcr_bias_add_118_0, shape=[1, 64, 768])) 
+= gemm_rcr_bias_add()(
+Tensor(name=gemm_rcr_bias_fast_gelu_117_0, shape=[1, 64, 3072]),
+Tensor(name=bert_encoder_layer_11_output_dense_weight, shape=[768, 3072]),
+Tensor(name=bert_encoder_layer_11_output_dense_bias, shape=[768]),
+Tensor(name=layernorm_116_0, shape=[1, 64, 768]))
+
+# layernorm_119
+(Tensor(name=output_0, shape=[1, 64, 768])) 
+= layernorm(normalized_shape=[768])(
+Tensor(name=gemm_rcr_bias_add_118_0, shape=[1, 64, 768]), Tensor(name=bert_encoder_layer_11_output_LayerNorm_weight, shape=[768]), Tensor(name=bert_encoder_layer_11_output_LayerNorm_bias, shape=[768]))
