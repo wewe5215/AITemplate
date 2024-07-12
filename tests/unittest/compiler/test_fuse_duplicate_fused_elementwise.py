@@ -39,6 +39,9 @@ class TestFuseDuplicateFusedElementwise(unittest.TestCase):
     5. Test same input accessors
     6. Test different input accessors
     """
+    def __init__(self, *args, **kwargs):
+        super(TestFuseDuplicateFusedElementwise, self).__init__(*args, **kwargs)
+        self.test_count = 0
 
     SHAPE = [32, 64, 100]
 
@@ -84,7 +87,7 @@ class TestFuseDuplicateFusedElementwise(unittest.TestCase):
         with compile_model(
             model_output,
             detect_target(),
-            "/tmp",
+            "./tmp",
             "fuse_duplicate_fused_elementwise_dups",
         ) as module:
             module.run_with_tensors({"input_x": x_pt}, {"output": y_ait})
@@ -113,7 +116,7 @@ class TestFuseDuplicateFusedElementwise(unittest.TestCase):
         with compile_model(
             model_output,
             detect_target(),
-            "/tmp",
+            "./tmp",
             "fuse_duplicate_fused_elementwise_dups_with_accessors",
         ) as module:
             module.run_with_tensors({"input_x": x_pt}, {"output": y_ait})
@@ -154,7 +157,7 @@ class TestFuseDuplicateFusedElementwise(unittest.TestCase):
         with compile_model(
             model_output,
             detect_target(),
-            "/tmp",
+            "./tmp",
             "fuse_duplicate_fused_elementwise_non_dups",
         ) as module:
             module.run_with_tensors(
@@ -227,7 +230,7 @@ class TestFuseDuplicateFusedElementwise(unittest.TestCase):
         with compile_model(
             model_output,
             detect_target(),
-            "/tmp",
+            "./tmp",
             "fuse_duplicate_fused_elementwise_all_interactions",
         ) as module:
             module.run_with_tensors(
@@ -302,7 +305,7 @@ class TestFuseDuplicateFusedElementwise(unittest.TestCase):
         with compile_model(
             model_output,
             detect_target(),
-            "/tmp",
+            "./tmp",
             "fuse_duplicate_fused_elementwise_same_input_different_input_accessors",
         ) as module:
             module.run_with_tensors({"input_x": x_pt}, {"output": y_ait})
@@ -311,3 +314,5 @@ class TestFuseDuplicateFusedElementwise(unittest.TestCase):
             )
             self.assertEqual(nsigmoid, 1 if should_fuse else 2)
             self.assertTrue(torch.allclose(y_pt, y_ait, atol=1e-2, rtol=1e-2))
+if __name__ == "__main__":
+    unittest.main()
