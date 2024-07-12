@@ -1,0 +1,69 @@
+# elementwise_0
+(Tensor(name=elementwise_0_0, shape=[batch_0, 4])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=x0, shape=[batch_0, 4]), Tensor(name=x1, shape=[batch_0, 4]))
+
+# concatenate_1
+(Tensor(name=concatenate_1_0, shape=[batch_0, 8])) 
+= concatenate(dim=1)(
+Tensor(name=elementwise_0_0, shape=[batch_0, 4]), Tensor(name=x2, shape=[batch_0, 4]))
+
+# reshape_18
+(Tensor(name=reshape_18_0, shape=[batch_0, 4, 2])) 
+= reshape()(
+Tensor(name=concatenate_1_0, shape=[batch_0, 8]), shape=[batch_0, 4, 2])
+
+# elementwise_3
+(Tensor(name=elementwise_3_0, shape=[batch_0, 4, 2])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=reshape_18_0, shape=[batch_0, 4, 2]), Tensor(name=x4, shape=[batch_0, 4, 2]))
+
+# reshape_4
+(Tensor(name=reshape_4_0, shape=[batch_0, 8])) 
+= reshape()(
+Tensor(name=elementwise_3_0, shape=[batch_0, 4, 2]), shape=[-1, 8])
+
+# reshape_19
+(Tensor(name=reshape_19_0, shape=[batch_0, 2])) 
+= reshape()(
+Tensor(name=x3, shape=[batch_0, 1, 2]), shape=[batch_0, 2])
+
+# concatenate_5
+(Tensor(name=concatenate_5_0, shape=[batch_0, 12])) 
+= concatenate(dim=1)(
+Tensor(name=reshape_19_0, shape=[batch_0, 2]), Tensor(name=concatenate_1_0, shape=[batch_0, 8]), Tensor(name=reshape_19_0, shape=[batch_0, 2]))
+
+# concatenate_7
+(Tensor(name=concatenate_7_0, shape=[batch_0, 20])) 
+= concatenate(dim=1)(
+Tensor(name=x0, shape=[batch_0, 4]), Tensor(name=concatenate_5_0, shape=[batch_0, 12]), Tensor(name=x0, shape=[batch_0, 4]))
+
+# elementwise_8
+(Tensor(name=elementwise_8_0, shape=[batch_0, 12])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=concatenate_5_0, shape=[batch_0, 12]), Tensor(name=x6, shape=[batch_0, 12]))
+
+# reduce_sum_9
+(Tensor(name=reduce_sum_9_0, shape=[batch_0])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=reshape_4_0, shape=[batch_0, 8]))
+
+# reduce_sum_10
+(Tensor(name=reduce_sum_10_0, shape=[batch_0])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=concatenate_7_0, shape=[batch_0, 20]))
+
+# reduce_sum_11
+(Tensor(name=reduce_sum_11_0, shape=[batch_0])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=elementwise_8_0, shape=[batch_0, 12]))
+
+# elementwise_12
+(Tensor(name=elementwise_12_0, shape=[batch_0])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=reduce_sum_9_0, shape=[batch_0]), Tensor(name=reduce_sum_11_0, shape=[batch_0]))
+
+# elementwise_13
+(Tensor(name=output0, shape=[batch_0])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=elementwise_12_0, shape=[batch_0]), Tensor(name=reduce_sum_10_0, shape=[batch_0]))

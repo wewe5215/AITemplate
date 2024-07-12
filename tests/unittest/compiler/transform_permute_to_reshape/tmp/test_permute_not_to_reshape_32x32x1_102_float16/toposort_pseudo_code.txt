@@ -1,0 +1,9 @@
+# None
+(Tensor(name=None, shape=[32, 32, 1])) 
+= permute102()(
+Tensor(name=x, shape=[32, 32, 1]))
+
+# None
+(Tensor(name=z, shape=[32, 32, 1])) 
+= softmax({'dim': 2})(
+Tensor(name=None, shape=[32, 32, 1]))

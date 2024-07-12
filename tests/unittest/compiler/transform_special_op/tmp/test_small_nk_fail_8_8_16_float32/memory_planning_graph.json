@@ -1,0 +1,374 @@
+{
+  "Tensors": [
+    {
+      "name": "input_0",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "gemm_rrr_0"
+      ],
+      "dtype": "float32",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 1024,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "input_1",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_1_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              16
+            ],
+            "symbolic_value": 16
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "gemm_rrr_0"
+      ],
+      "dtype": "float32",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 0,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "gemm_rrr_tensor",
+      "depth": 1,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              8
+            ],
+            "symbolic_value": 8
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              16
+            ],
+            "symbolic_value": 16
+          }
+        }
+      ],
+      "src_ops": [
+        "gemm_rrr_0"
+      ],
+      "dst_ops": [],
+      "dtype": "float32",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 512,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    }
+  ],
+  "Operators": [
+    {
+      "_original_op_name": "gemm_rrr_0",
+      "name": "gemm_rrr_0",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "input_0",
+        "input_1"
+      ],
+      "has_profiler": true,
+      "op": "gemm_rrr",
+      "f_ab_alignment": "<function gemm_rrr.__init__.<locals>.cal_align_ab at 0x716bad66fb00>",
+      "epilogue_alignment": 4,
+      "epilogue": "LinearCombination",
+      "workspace": 0,
+      "split_k": 1,
+      "num_sources": 0,
+      "alpha": 1.0,
+      "permute_shape": "",
+      "input_accessors": [
+        {
+          "offset": 0,
+          "original_shapes": [
+            {
+              "_attrs": {
+                "name": "input_0_dim_0",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  8
+                ],
+                "symbolic_value": 8
+              }
+            },
+            {
+              "_attrs": {
+                "name": "input_0_dim_1",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  8
+                ],
+                "symbolic_value": 8
+              }
+            }
+          ],
+          "tensor_dtype": "float32",
+          "is_contiguous": true,
+          "is_from_strided_tensor": false,
+          "stride_dim": null,
+          "actual_shapes": null,
+          "original_total_elements_from_stride_dim": null,
+          "actual_total_elements_from_stride_dim": null,
+          "_dim_mapping": [
+            [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "offset": 0,
+          "original_shapes": [
+            {
+              "_attrs": {
+                "name": "input_1_dim_0",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  8
+                ],
+                "symbolic_value": 8
+              }
+            },
+            {
+              "_attrs": {
+                "name": "input_1_dim_1",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  16
+                ],
+                "symbolic_value": 16
+              }
+            }
+          ],
+          "tensor_dtype": "float32",
+          "is_contiguous": true,
+          "is_from_strided_tensor": false,
+          "stride_dim": null,
+          "actual_shapes": null,
+          "original_total_elements_from_stride_dim": null,
+          "actual_total_elements_from_stride_dim": null,
+          "_dim_mapping": [
+            [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ]
+          ]
+        }
+      ],
+      "outputs": [
+        "gemm_rrr_tensor"
+      ],
+      "output_accessors": [
+        {
+          "offset": 0,
+          "original_shapes": [
+            {
+              "_attrs": {
+                "name": "input_0_dim_0",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  8
+                ],
+                "symbolic_value": 8
+              }
+            },
+            {
+              "_attrs": {
+                "name": "input_1_dim_1",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  16
+                ],
+                "symbolic_value": 16
+              }
+            }
+          ],
+          "tensor_dtype": "float32",
+          "is_contiguous": true,
+          "is_from_strided_tensor": false,
+          "stride_dim": null,
+          "actual_shapes": null,
+          "original_total_elements_from_stride_dim": null,
+          "actual_total_elements_from_stride_dim": null,
+          "_dim_mapping": [
+            [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ]
+          ]
+        }
+      ],
+      "original_name": "gemm_rrr_0",
+      "op_instance": {
+        "cutlass_tensorop_s1688tf32gemm_256x128_16x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade782c0>",
+        "cutlass_tensorop_s1688tf32gemm_128x256_16x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bad916c30>",
+        "cutlass_tensorop_s1688tf32gemm_256x64_16x4_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bae162d50>",
+        "cutlass_tensorop_s1688tf32gemm_64x256_16x4_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bae0314f0>",
+        "cutlass_tensorop_s1688tf32gemm_128x128_16x5_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bae56d790>",
+        "cutlass_tensorop_s1688tf32gemm_128x128_16x4_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bae56e0f0>",
+        "cutlass_tensorop_s1688tf32gemm_128x128_16x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bae6a6a50>",
+        "cutlass_tensorop_s1688tf32gemm_128x64_16x6_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bae6a64b0>",
+        "cutlass_tensorop_s1688tf32gemm_64x128_16x6_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bae4e7b90>",
+        "cutlass_tensorop_s1688tf32gemm_64x64_16x10_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade317c0>",
+        "cutlass_tensorop_s1688tf32gemm_256x128_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade22a50>",
+        "cutlass_tensorop_s1688tf32gemm_128x256_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade21280>",
+        "cutlass_tensorop_s1688tf32gemm_256x64_32x4_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade237d0>",
+        "cutlass_tensorop_s1688tf32gemm_64x256_32x4_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade24fb0>",
+        "cutlass_tensorop_s1688tf32gemm_128x128_32x4_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade26750>",
+        "cutlass_tensorop_s1688tf32gemm_128x128_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade27ef0>",
+        "cutlass_tensorop_s1688tf32gemm_128x64_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade78920>",
+        "cutlass_tensorop_s1688tf32gemm_64x128_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade79400>",
+        "cutlass_tensorop_s1688tf32gemm_64x64_32x5_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade7bd40>",
+        "cutlass_tensorop_s1688gemm_128x128_16x4_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade7a240>",
+        "cutlass_tensorop_s1688gemm_128x128_16x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade7ac60>",
+        "cutlass_tensorop_s1688gemm_256x64_16x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bad3682c0>",
+        "cutlass_tensorop_s1688gemm_64x256_16x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716badee0530>",
+        "cutlass_tensorop_s1688gemm_128x64_16x4_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716badee11c0>",
+        "cutlass_tensorop_s1688gemm_64x128_16x4_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716badee1d90>",
+        "cutlass_tensorop_s1688gemm_64x64_16x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade68b90>",
+        "cutlass_tensorop_s1688gemm_128x128_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade695e0>",
+        "cutlass_tensorop_s1688gemm_256x64_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade6a0c0>",
+        "cutlass_tensorop_s1688gemm_64x256_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade6abd0>",
+        "cutlass_tensorop_s1688gemm_128x64_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade6b5f0>",
+        "cutlass_tensorop_s1688gemm_64x128_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716bade686b0>",
+        "cutlass_tensorop_s1688gemm_64x64_32x3_tt_align_4_4": "<cutlass_lib.gemm_operation.GemmOperation object at 0x716badeeb8c0>"
+      },
+      "exec_path": {
+        "M == 8 && N == 16 && K == 8": "ExecItem(profiling_key='M == 8 && N == 16 && K == 8', exec_cond='M == 8 && N == 16 && K == 8', algo='cutlass_tensorop_s1688tf32gemm_64x256_16x4_tt_align_4_4')"
+      }
+    }
+  ]
+}

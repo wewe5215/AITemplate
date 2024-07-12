@@ -1,0 +1,9 @@
+# bmm_rcr_n1_4
+(Tensor(name=bmm_rcr_tensor, shape=[10, 8, 1])) 
+= bmm_rcr_n1()(
+Tensor(name=input_0, shape=[10, 8, 8]), Tensor(name=input_1, shape=[10, 1, 8]))
+
+# fused_elementwise_3
+(Tensor(name=output_0, shape=[10, 8, 1])) 
+= fused_elementwise(func=[<FuncEnum.COS: 6>])(
+Tensor(name=bmm_rcr_tensor, shape=[10, 8, 1]))

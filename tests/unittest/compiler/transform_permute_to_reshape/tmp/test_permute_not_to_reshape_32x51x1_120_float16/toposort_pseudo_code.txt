@@ -1,0 +1,14 @@
+# None
+(Tensor(name=None, shape=[32, 51, 1])) 
+= unsqueeze(dim=2)(
+Tensor(name=x, shape=[32, 51]))
+
+# None
+(Tensor(name=None, shape=[51, 1, 32])) 
+= permute()(
+Tensor(name=None, shape=[32, 51, 1]))
+
+# None
+(Tensor(name=z, shape=[51, 1, 32])) 
+= softmax({'dim': 2})(
+Tensor(name=None, shape=[51, 1, 32]))

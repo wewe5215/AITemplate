@@ -1,0 +1,69 @@
+# None
+(Tensor(name=None, shape=[batch_0, 4])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=x0, shape=[batch_0, 4]), Tensor(name=x1, shape=[batch_0, 4]))
+
+# None
+(Tensor(name=None, shape=[batch_0, 8])) 
+= concatenate(dim=1)(
+Tensor(name=None, shape=[batch_0, 4]), Tensor(name=x2, shape=[batch_0, 4]))
+
+# None
+(Tensor(name=None, shape=[batch_0, 4, 2])) 
+= reshape()(
+Tensor(name=None, shape=[batch_0, 8]), shape=[-1, 4, 2])
+
+# None
+(Tensor(name=None, shape=[batch_0, 4, 2])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[batch_0, 4, 2]), Tensor(name=x4, shape=[batch_0, 4, 2]))
+
+# None
+(Tensor(name=None, shape=[batch_0, 8])) 
+= reshape()(
+Tensor(name=None, shape=[batch_0, 4, 2]), shape=[-1, 8])
+
+# None
+(Tensor(name=None, shape=[batch_0, 6, 2])) 
+= concatenate(dim=1)(
+Tensor(name=x3, shape=[batch_0, 1, 2]), Tensor(name=None, shape=[batch_0, 4, 2]), Tensor(name=x3, shape=[batch_0, 1, 2]))
+
+# None
+(Tensor(name=None, shape=[batch_0, 12])) 
+= reshape()(
+Tensor(name=None, shape=[batch_0, 6, 2]), shape=[-1, 12])
+
+# None
+(Tensor(name=None, shape=[batch_0, 20])) 
+= concatenate(dim=1)(
+Tensor(name=x0, shape=[batch_0, 4]), Tensor(name=None, shape=[batch_0, 12]), Tensor(name=x0, shape=[batch_0, 4]))
+
+# None
+(Tensor(name=None, shape=[batch_0, 12])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[batch_0, 12]), Tensor(name=x6, shape=[batch_0, 12]))
+
+# None
+(Tensor(name=None, shape=[batch_0])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=None, shape=[batch_0, 8]))
+
+# None
+(Tensor(name=None, shape=[batch_0])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=None, shape=[batch_0, 20]))
+
+# None
+(Tensor(name=None, shape=[batch_0])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=None, shape=[batch_0, 12]))
+
+# None
+(Tensor(name=None, shape=[batch_0])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[batch_0]), Tensor(name=None, shape=[batch_0]))
+
+# None
+(Tensor(name=output0, shape=[batch_0])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[batch_0]), Tensor(name=None, shape=[batch_0]))

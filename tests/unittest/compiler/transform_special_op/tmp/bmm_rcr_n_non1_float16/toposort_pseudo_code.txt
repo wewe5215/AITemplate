@@ -1,0 +1,4 @@
+# None
+(Tensor(name=bmm_rcr_tensor, shape=[8, 8, 8])) 
+= bmm_rcr()(
+Tensor(name=input_0, shape=[8, 8, 8]), Tensor(name=input_1, shape=[8, 8, 8]))

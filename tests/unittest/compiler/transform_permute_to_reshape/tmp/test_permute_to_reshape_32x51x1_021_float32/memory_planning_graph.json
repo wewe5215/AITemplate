@@ -1,0 +1,374 @@
+{
+  "Tensors": [
+    {
+      "name": "x",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "x_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              51
+            ],
+            "symbolic_value": 51
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              1
+            ],
+            "symbolic_value": 1
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "reshape_2"
+      ],
+      "dtype": "float32",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 0,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "reshape_2_0",
+      "depth": 1,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "x_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              1
+            ],
+            "symbolic_value": 1
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              51
+            ],
+            "symbolic_value": 51
+          }
+        }
+      ],
+      "src_ops": [
+        "reshape_2"
+      ],
+      "dst_ops": [
+        "softmax_1"
+      ],
+      "dtype": "float32",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": {
+        "name": "x",
+        "depth": 0,
+        "nop": false,
+        "shape": [
+          {
+            "_attrs": {
+              "name": "x_dim_0",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                32
+              ],
+              "symbolic_value": 32
+            }
+          },
+          {
+            "_attrs": {
+              "name": "x_dim_1",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                51
+              ],
+              "symbolic_value": 51
+            }
+          },
+          {
+            "_attrs": {
+              "name": "x_dim_2",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                1
+              ],
+              "symbolic_value": 1
+            }
+          }
+        ],
+        "src_ops": [],
+        "dst_ops": [
+          "reshape_2"
+        ],
+        "dtype": "float32",
+        "is_output": false,
+        "is_input": true,
+        "is_param": false,
+        "is_internal_constant": false,
+        "skip_constant_folding": false,
+        "has_output_aliases": false,
+        "external_tensor": null,
+        "is_view_of": null,
+        "value": null,
+        "offset": 0,
+        "data": null,
+        "constant_folding_output_idx": null,
+        "check_nan_and_inf": false,
+        "check_outputs": false,
+        "original_name": null
+      },
+      "is_view_of": {
+        "name": "x",
+        "depth": 0,
+        "nop": false,
+        "shape": [
+          {
+            "_attrs": {
+              "name": "x_dim_0",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                32
+              ],
+              "symbolic_value": 32
+            }
+          },
+          {
+            "_attrs": {
+              "name": "x_dim_1",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                51
+              ],
+              "symbolic_value": 51
+            }
+          },
+          {
+            "_attrs": {
+              "name": "x_dim_2",
+              "depth": 0,
+              "nop": false,
+              "values": [
+                1
+              ],
+              "symbolic_value": 1
+            }
+          }
+        ],
+        "src_ops": [],
+        "dst_ops": [
+          "reshape_2"
+        ],
+        "dtype": "float32",
+        "is_output": false,
+        "is_input": true,
+        "is_param": false,
+        "is_internal_constant": false,
+        "skip_constant_folding": false,
+        "has_output_aliases": false,
+        "external_tensor": null,
+        "is_view_of": null,
+        "value": null,
+        "offset": 0,
+        "data": null,
+        "constant_folding_output_idx": null,
+        "check_nan_and_inf": false,
+        "check_outputs": false,
+        "original_name": null
+      },
+      "value": null,
+      "offset": 0,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "z",
+      "depth": 2,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "x_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              1
+            ],
+            "symbolic_value": 1
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              51
+            ],
+            "symbolic_value": 51
+          }
+        }
+      ],
+      "src_ops": [
+        "softmax_1"
+      ],
+      "dst_ops": [],
+      "dtype": "float32",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 6528,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    }
+  ],
+  "Operators": [
+    {
+      "_original_op_name": "reshape_2",
+      "name": "reshape_2",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "x"
+      ],
+      "has_profiler": false,
+      "unknown_idx": -1,
+      "op": "reshape",
+      "shape": [
+        {
+          "_attrs": {
+            "name": "x_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              32
+            ],
+            "symbolic_value": 32
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              1
+            ],
+            "symbolic_value": 1
+          }
+        },
+        {
+          "_attrs": {
+            "name": "x_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              51
+            ],
+            "symbolic_value": 51
+          }
+        }
+      ],
+      "is_intvar": false,
+      "outputs": [
+        "reshape_2_0"
+      ],
+      "original_name": "reshape_2"
+    },
+    {
+      "_original_op_name": "softmax_1",
+      "name": "softmax_1",
+      "depth": 1,
+      "nop": false,
+      "inputs": [
+        "reshape_2_0"
+      ],
+      "has_profiler": false,
+      "op": "softmax",
+      "dim": 2,
+      "outputs": [
+        "z"
+      ],
+      "original_name": "softmax_1"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# gemm_rrr_0
+(Tensor(name=gemm_rrr_tensor, shape=[1000, 6])) 
+= gemm_rrr()(
+Tensor(name=input_0, shape=[1000, 3]), Tensor(name=input_1, shape=[3, 6]))
+
+# elementwise_1
+(Tensor(name=output_0, shape=[1000, 6])) 
+= elementwise(func=FuncEnum.COS)(
+Tensor(name=gemm_rrr_tensor, shape=[1000, 6]))

@@ -1,0 +1,9 @@
+# concatenate_4
+(Tensor(name=output0, shape=[batch_0, 4, 16])) 
+= concatenate(dim=1)(
+Tensor(name=x0, shape=[batch_0, 32]), Tensor(name=x0, shape=[batch_0, 32]))
+
+# fused_elementwise_5
+(Tensor(name=output0, shape=[batch_0, 4, 16])) 
+= fused_elementwise(func=[<FuncEnum.ADD: 1>])(
+Tensor(name=x1, shape=[batch_0, 2, 16]))

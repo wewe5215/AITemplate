@@ -1,0 +1,14 @@
+# concatenate_0
+(Tensor(name=concatenate_0_0, shape=[batch_0, 4, 8])) 
+= concatenate(dim=1)(
+Tensor(name=x0, shape=[batch_0, 2, 8]), Tensor(name=x1, shape=[batch_0, 2, 8]))
+
+# concatenate_2
+(Tensor(name=output0, shape=[batch_0, 8, 8])) 
+= concatenate(dim=1)(
+Tensor(name=concatenate_0_0, shape=[batch_0, 4, 8]))
+
+# fused_elementwise_3
+(Tensor(name=output0, shape=[batch_0, 8, 8])) 
+= fused_elementwise(func=[<FuncEnum.ADD: 1>])(
+Tensor(name=concatenate_0_0, shape=[batch_0, 4, 8]), Tensor(name=x2, shape=[batch_0, 4, 8]))

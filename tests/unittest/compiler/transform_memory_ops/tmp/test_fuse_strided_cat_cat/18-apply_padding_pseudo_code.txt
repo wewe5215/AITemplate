@@ -1,0 +1,29 @@
+# concatenate_1
+(Tensor(name=concatenate_1_0, shape=[batch_0, 8, 8])) 
+= concatenate(dim=1)(
+Tensor(name=x0, shape=[batch_0, 2, 8]), Tensor(name=x0, shape=[batch_0, 2, 8]), Tensor(name=x1, shape=[batch_0, 4, 8]))
+
+# dynamic_slice_0_concatenate_0
+(Tensor(name=dynamic_slice_0_concatenate_0_0, shape=[batch_0, 6, 8])) 
+= dynamic_slice(start_indices=[0, 2, 0], end_indices=[2147483647, 8, 2147483647])(
+Tensor(name=concatenate_1_0, shape=[batch_0, 8, 8]))
+
+# fused_elementwise_6
+(Tensor(name=elementwise_2_0, shape=[batch_0, 6, 8])) 
+= fused_elementwise(func=[<FuncEnum.ADD: 1>])(
+Tensor(name=dynamic_slice_0_concatenate_0_0, shape=[batch_0, 6, 8]), Tensor(name=x2, shape=[batch_0, 6, 8]))
+
+# reduce_sum_3
+(Tensor(name=reduce_sum_3_0, shape=[batch_0, 8])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=concatenate_1_0, shape=[batch_0, 8, 8]))
+
+# reduce_sum_4
+(Tensor(name=reduce_sum_4_0, shape=[batch_0, 8])) 
+= reduce_sum(dim=[1], dtype=None, keepdim=False)(
+Tensor(name=elementwise_2_0, shape=[batch_0, 6, 8]))
+
+# fused_elementwise_7
+(Tensor(name=output0, shape=[batch_0, 8])) 
+= fused_elementwise(func=[<FuncEnum.ADD: 1>])(
+Tensor(name=reduce_sum_4_0, shape=[batch_0, 8]), Tensor(name=reduce_sum_3_0, shape=[batch_0, 8]))

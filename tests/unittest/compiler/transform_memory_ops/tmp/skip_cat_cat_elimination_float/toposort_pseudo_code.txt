@@ -1,0 +1,19 @@
+# None
+(Tensor(name=None, shape=[1024, 10, 128])) 
+= concatenate(dim=1)(
+Tensor(name=input0, shape=[1024, 5, 128]), Tensor(name=input1, shape=[1024, 5, 128]))
+
+# None
+(Tensor(name=output0, shape=[1024, 10, 260])) 
+= concatenate(dim=2)(
+Tensor(name=None, shape=[1024, 10, 128]), Tensor(name=input2, shape=[1024, 10, 132]))
+
+# None
+(Tensor(name=None, shape=[1024, 10, 516])) 
+= concatenate(dim=2)(
+Tensor(name=input3, shape=[1024, 10, 256]), Tensor(name=output0, shape=[1024, 10, 260]))
+
+# None
+(Tensor(name=output1, shape=[1024, 10, 648])) 
+= concatenate(dim=2)(
+Tensor(name=None, shape=[1024, 10, 516]), Tensor(name=input2, shape=[1024, 10, 132]))

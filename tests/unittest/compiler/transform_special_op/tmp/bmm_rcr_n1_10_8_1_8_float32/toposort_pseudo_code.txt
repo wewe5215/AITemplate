@@ -1,0 +1,14 @@
+# None
+(Tensor(name=bmm_rcr_tensor, shape=[10, 8, 1])) 
+= bmm_rcr()(
+Tensor(name=input_0, shape=[10, 8, 8]), Tensor(name=input_1, shape=[10, 1, 8]))
+
+# None
+(Tensor(name=None, shape=[10, 8, 1])) 
+= elementwise(func=FuncEnum.MUL)(
+Tensor(name=bmm_rcr_tensor, shape=[10, 8, 1]))
+
+# None
+(Tensor(name=output_0, shape=[10, 8, 1])) 
+= elementwise(func=FuncEnum.COS)(
+Tensor(name=None, shape=[10, 8, 1]))

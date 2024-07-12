@@ -1,0 +1,9 @@
+# gemm_rrr_small_nk_3
+(Tensor(name=gemm_rrr_tensor, shape=[10, 8])) 
+= gemm_rrr_small_nk()(
+Tensor(name=input_0, shape=[10, 4]), Tensor(name=input_1, shape=[4, 8]))
+
+# fused_elementwise_2
+(Tensor(name=output_0, shape=[10, 8])) 
+= fused_elementwise(func=[<FuncEnum.COS: 6>])(
+Tensor(name=gemm_rrr_tensor, shape=[10, 8]))

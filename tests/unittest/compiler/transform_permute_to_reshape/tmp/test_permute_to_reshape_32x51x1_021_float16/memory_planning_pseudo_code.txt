@@ -1,0 +1,9 @@
+# reshape_3
+(Tensor(name=reshape_3_0, shape=[32, 1, 51])) 
+= reshape()(
+Tensor(name=x, shape=[32, 51]), shape=[32, 1, 51])
+
+# softmax_2
+(Tensor(name=z, shape=[32, 1, 51])) 
+= softmax({'dim': 2})(
+Tensor(name=reshape_3_0, shape=[32, 1, 51]))

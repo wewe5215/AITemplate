@@ -1,0 +1,24 @@
+# elementwise_0
+(Tensor(name=elementwise_0_0, shape=[batch_0, 2, 16])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=x1, shape=[batch_0, 2, 16]), Tensor(name=x1, shape=[batch_0, 2, 16]))
+
+# split_1
+(Tensor(name=split_1_0, shape=[batch_0, 16]), Tensor(name=split_1_1, shape=[batch_0, 16])) 
+= split(split_sizes=[16, 16]], dim=1])(
+Tensor(name=x0, shape=[batch_0, 32]))
+
+# unsqueeze_2
+(Tensor(name=unsqueeze_2_0, shape=[batch_0, 1, 16])) 
+= unsqueeze(dim=1)(
+Tensor(name=split_1_0, shape=[batch_0, 16]))
+
+# unsqueeze_3
+(Tensor(name=unsqueeze_3_0, shape=[batch_0, 1, 16])) 
+= unsqueeze(dim=1)(
+Tensor(name=split_1_1, shape=[batch_0, 16]))
+
+# concatenate_4
+(Tensor(name=output0, shape=[batch_0, 4, 16])) 
+= concatenate(dim=1)(
+Tensor(name=unsqueeze_2_0, shape=[batch_0, 1, 16]), Tensor(name=unsqueeze_3_0, shape=[batch_0, 1, 16]), Tensor(name=elementwise_0_0, shape=[batch_0, 2, 16]))
