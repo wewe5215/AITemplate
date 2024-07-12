@@ -1,0 +1,14 @@
+# None
+(Tensor(name=None, shape=[1, 2])) 
+= dynamic_slice(start_indices=[1, 1], end_indices=[2, 3])(
+Tensor(name=input_0, shape=[input_batch_0, 3]))
+
+# None
+(Tensor(name=None, shape=[1, 2])) 
+= dynamic_slice(start_indices=[0, 0], end_indices=[1, 2])(
+Tensor(name=input_1, shape=[input_batch_1, 3]))
+
+# None
+(Tensor(name=output_0, shape=[2, 2])) 
+= concatenate(dim=0)(
+Tensor(name=None, shape=[1, 2]), Tensor(name=None, shape=[1, 2]))

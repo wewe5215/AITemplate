@@ -1,0 +1,9 @@
+# fused_elementwise_4
+(Tensor(name=output_1, shape=[4, 3, 4])) 
+= fused_elementwise(func=[<FuncEnum.ADD: 1>])(
+Tensor(name=input_0, shape=[4, 3, 4]), Tensor(name=input_2, shape=[4, 3, 4]))
+
+# slice_scatter_5
+(Tensor(name=output_0, shape=[2, 3, 11])) 
+= slice_scatter(scatter_dim=2])(
+Tensor(name=input_0, shape=[4, 3, 4]), Tensor(name=input_1, shape=[3, 7, 10]))

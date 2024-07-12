@@ -1,0 +1,4 @@
+# slice_scatter_3
+(Tensor(name=output_0, shape=[2, 7, 4])) 
+= slice_scatter(scatter_dim=1])(
+Tensor(name=input_0, shape=[2, 3, 5]), Tensor(name=input_1, shape=[3, 7, 10]))

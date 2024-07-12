@@ -1,0 +1,276 @@
+{
+  "Tensors": [
+    {
+      "name": "input_0",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_batch_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4,
+              128,
+              1024
+            ],
+            "symbolic_value": "input_batch_0"
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              3
+            ],
+            "symbolic_value": 3
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "slice_scatter_3"
+      ],
+      "dtype": "float",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 0,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "input_1",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_batch_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4,
+              128,
+              1024
+            ],
+            "symbolic_value": "input_batch_1"
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              3
+            ],
+            "symbolic_value": 3
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "slice_scatter_3"
+      ],
+      "dtype": "float",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 12288,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "output_0",
+      "depth": 2,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "output_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              2
+            ],
+            "symbolic_value": 2
+          }
+        },
+        {
+          "_attrs": {
+            "name": "dynamic_slice_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              2
+            ],
+            "symbolic_value": 2
+          }
+        }
+      ],
+      "src_ops": [
+        "slice_scatter_3"
+      ],
+      "dst_ops": [],
+      "dtype": "float",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": 24576,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    }
+  ],
+  "Operators": [
+    {
+      "_original_op_name": "slice_scatter_3",
+      "name": "slice_scatter_3",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "input_0",
+        "input_1"
+      ],
+      "has_profiler": false,
+      "op": "slice_scatter",
+      "scatter_dim": 0,
+      "slice_ops": [
+        {
+          "_original_op_name": "dynamic_slice_0",
+          "name": "dynamic_slice_0",
+          "depth": 0,
+          "nop": false,
+          "inputs": [
+            "input_0"
+          ],
+          "has_profiler": false,
+          "op": "dynamic_slice",
+          "start_indices": [
+            1,
+            1
+          ],
+          "end_indices": [
+            2,
+            3
+          ],
+          "outputs": [
+            "dynamic_slice_0_0"
+          ],
+          "original_name": "dynamic_slice_0"
+        },
+        {
+          "_original_op_name": "dynamic_slice_1",
+          "name": "dynamic_slice_1",
+          "depth": 0,
+          "nop": false,
+          "inputs": [
+            "input_1"
+          ],
+          "has_profiler": false,
+          "op": "dynamic_slice",
+          "start_indices": [
+            0,
+            0
+          ],
+          "end_indices": [
+            1,
+            2
+          ],
+          "outputs": [
+            "dynamic_slice_1_0"
+          ],
+          "original_name": "dynamic_slice_1"
+        }
+      ],
+      "output_accessors": [
+        {
+          "offset": 0,
+          "original_shapes": [
+            {
+              "_attrs": {
+                "name": "output_0_dim_0",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  2
+                ],
+                "symbolic_value": 2
+              }
+            },
+            {
+              "_attrs": {
+                "name": "dynamic_slice_0_0_dim_1",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  2
+                ],
+                "symbolic_value": 2
+              }
+            }
+          ],
+          "tensor_dtype": "float",
+          "is_contiguous": true,
+          "is_from_strided_tensor": false,
+          "stride_dim": null,
+          "actual_shapes": null,
+          "original_total_elements_from_stride_dim": null,
+          "actual_total_elements_from_stride_dim": null,
+          "_dim_mapping": [
+            [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ]
+          ]
+        }
+      ],
+      "outputs": [
+        "output_0"
+      ],
+      "original_name": "slice_scatter_3"
+    }
+  ]
+}

@@ -1,0 +1,530 @@
+{
+  "Tensors": [
+    {
+      "name": "input_0",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              2
+            ],
+            "symbolic_value": 2
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              3
+            ],
+            "symbolic_value": 3
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              5
+            ],
+            "symbolic_value": 5
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "dynamic_slice_1"
+      ],
+      "dtype": "float",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "input_1",
+      "depth": 0,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "input_1_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              3
+            ],
+            "symbolic_value": 3
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              7
+            ],
+            "symbolic_value": 7
+          }
+        },
+        {
+          "_attrs": {
+            "name": "input_1_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              10
+            ],
+            "symbolic_value": 10
+          }
+        }
+      ],
+      "src_ops": [],
+      "dst_ops": [
+        "dynamic_slice_0"
+      ],
+      "dtype": "float",
+      "is_output": false,
+      "is_input": true,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "dynamic_slice_0_0",
+      "depth": 1,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "dynamic_slice_0_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              2
+            ],
+            "symbolic_value": 2
+          }
+        },
+        {
+          "_attrs": {
+            "name": "dynamic_slice_0_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              6
+            ],
+            "symbolic_value": 6
+          }
+        },
+        {
+          "_attrs": {
+            "name": "dynamic_slice_0_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        }
+      ],
+      "src_ops": [
+        "dynamic_slice_0"
+      ],
+      "dst_ops": [
+        "concatenate_2"
+      ],
+      "dtype": "float",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "dynamic_slice_1_0",
+      "depth": 1,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "dynamic_slice_1_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              2
+            ],
+            "symbolic_value": 2
+          }
+        },
+        {
+          "_attrs": {
+            "name": "dynamic_slice_1_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              1
+            ],
+            "symbolic_value": 1
+          }
+        },
+        {
+          "_attrs": {
+            "name": "dynamic_slice_1_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        }
+      ],
+      "src_ops": [
+        "dynamic_slice_1"
+      ],
+      "dst_ops": [
+        "concatenate_2"
+      ],
+      "dtype": "float",
+      "is_output": false,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    },
+    {
+      "name": "output_0",
+      "depth": 2,
+      "nop": false,
+      "shape": [
+        {
+          "_attrs": {
+            "name": "dynamic_slice_1_0_dim_0",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              2
+            ],
+            "symbolic_value": 2
+          }
+        },
+        {
+          "_attrs": {
+            "name": "output_0_dim_1",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              7
+            ],
+            "symbolic_value": 7
+          }
+        },
+        {
+          "_attrs": {
+            "name": "dynamic_slice_1_0_dim_2",
+            "depth": 0,
+            "nop": false,
+            "values": [
+              4
+            ],
+            "symbolic_value": 4
+          }
+        }
+      ],
+      "src_ops": [
+        "concatenate_2"
+      ],
+      "dst_ops": [],
+      "dtype": "float",
+      "is_output": true,
+      "is_input": false,
+      "is_param": false,
+      "is_internal_constant": false,
+      "skip_constant_folding": false,
+      "has_output_aliases": false,
+      "external_tensor": null,
+      "is_view_of": null,
+      "value": null,
+      "offset": null,
+      "data": null,
+      "constant_folding_output_idx": null,
+      "check_nan_and_inf": false,
+      "check_outputs": false,
+      "original_name": null
+    }
+  ],
+  "Operators": [
+    {
+      "_original_op_name": "dynamic_slice_0",
+      "name": "dynamic_slice_0",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "input_1"
+      ],
+      "has_profiler": false,
+      "op": "dynamic_slice",
+      "start_indices": [
+        0,
+        1,
+        3
+      ],
+      "end_indices": [
+        2,
+        7,
+        7
+      ],
+      "outputs": [
+        "dynamic_slice_0_0"
+      ],
+      "original_name": "dynamic_slice_0"
+    },
+    {
+      "_original_op_name": "dynamic_slice_1",
+      "name": "dynamic_slice_1",
+      "depth": 0,
+      "nop": false,
+      "inputs": [
+        "input_0"
+      ],
+      "has_profiler": false,
+      "op": "dynamic_slice",
+      "start_indices": [
+        0,
+        1,
+        0
+      ],
+      "end_indices": [
+        2,
+        2,
+        4
+      ],
+      "outputs": [
+        "dynamic_slice_1_0"
+      ],
+      "original_name": "dynamic_slice_1"
+    },
+    {
+      "_original_op_name": "concatenate_2",
+      "name": "concatenate_2",
+      "depth": 1,
+      "nop": false,
+      "inputs": [
+        "dynamic_slice_1_0",
+        "dynamic_slice_0_0"
+      ],
+      "has_profiler": false,
+      "op": "concatenate",
+      "fast_cat": true,
+      "input_accessors": [
+        {
+          "offset": 0,
+          "original_shapes": [
+            {
+              "_attrs": {
+                "name": "dynamic_slice_1_0_dim_0",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  2
+                ],
+                "symbolic_value": 2
+              }
+            },
+            {
+              "_attrs": {
+                "name": "dynamic_slice_1_0_dim_1",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  1
+                ],
+                "symbolic_value": 1
+              }
+            },
+            {
+              "_attrs": {
+                "name": "dynamic_slice_1_0_dim_2",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  4
+                ],
+                "symbolic_value": 4
+              }
+            }
+          ],
+          "tensor_dtype": "float",
+          "is_contiguous": true,
+          "is_from_strided_tensor": false,
+          "stride_dim": null,
+          "actual_shapes": null,
+          "original_total_elements_from_stride_dim": null,
+          "actual_total_elements_from_stride_dim": null,
+          "_dim_mapping": [
+            [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2
+              ],
+              [
+                2
+              ]
+            ]
+          ]
+        },
+        {
+          "offset": 0,
+          "original_shapes": [
+            {
+              "_attrs": {
+                "name": "dynamic_slice_0_0_dim_0",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  2
+                ],
+                "symbolic_value": 2
+              }
+            },
+            {
+              "_attrs": {
+                "name": "dynamic_slice_0_0_dim_1",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  6
+                ],
+                "symbolic_value": 6
+              }
+            },
+            {
+              "_attrs": {
+                "name": "dynamic_slice_0_0_dim_2",
+                "depth": 0,
+                "nop": false,
+                "values": [
+                  4
+                ],
+                "symbolic_value": 4
+              }
+            }
+          ],
+          "tensor_dtype": "float",
+          "is_contiguous": true,
+          "is_from_strided_tensor": false,
+          "stride_dim": null,
+          "actual_shapes": null,
+          "original_total_elements_from_stride_dim": null,
+          "actual_total_elements_from_stride_dim": null,
+          "_dim_mapping": [
+            [
+              [
+                0
+              ],
+              [
+                0
+              ]
+            ],
+            [
+              [
+                1
+              ],
+              [
+                1
+              ]
+            ],
+            [
+              [
+                2
+              ],
+              [
+                2
+              ]
+            ]
+          ]
+        }
+      ],
+      "original_inputs": [
+        "dynamic_slice_1_0",
+        "dynamic_slice_0_0"
+      ],
+      "input_masks": [
+        true,
+        true
+      ],
+      "concat_dim": 1,
+      "outputs": [
+        "output_0"
+      ],
+      "original_name": "concatenate_2"
+    }
+  ]
+}
