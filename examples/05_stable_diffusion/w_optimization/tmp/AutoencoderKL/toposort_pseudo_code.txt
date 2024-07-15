@@ -1,0 +1,497 @@
+# None
+(Tensor(name=None, shape=[1, 64, 64, 4])) 
+= conv2d_bias(dilate=1, group=1, pad=0, stride=1)(
+Tensor(name=vae_input, shape=[1, 64, 64, 4]), Tensor(name=post_quant_conv_weight, shape=[4, 1, 1, 4]), Tensor(name=post_quant_conv_bias, shape=[4]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 4]), Tensor(name=decoder_conv_in_weight, shape=[512, 3, 3, 4]), Tensor(name=decoder_conv_in_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_mid_block_resnets_0_norm1_weight, shape=[512]), Tensor(name=decoder_mid_block_resnets_0_norm1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_mid_block_resnets_0_conv1_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_mid_block_resnets_0_conv1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_mid_block_resnets_0_norm2_weight, shape=[512]), Tensor(name=decoder_mid_block_resnets_0_norm2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_mid_block_resnets_0_conv2_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_mid_block_resnets_0_conv2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=None, shape=[1, 64, 64, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_mid_block_attentions_0_group_norm_weight, shape=[512]), Tensor(name=decoder_mid_block_attentions_0_group_norm_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 4096, 512])) 
+= reshape()(
+Tensor(name=None, shape=[1, 64, 64, 512]), shape=[1, 4096, 512])
+
+# None
+(Tensor(name=None, shape=[1, 4096, 512])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[1, 4096, 512]), Tensor(name=decoder_mid_block_attentions_0_attention_proj_q_weight, shape=[512, 512]), Tensor(name=decoder_mid_block_attentions_0_attention_proj_q_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 4096, 512])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[1, 4096, 512]), Tensor(name=decoder_mid_block_attentions_0_attention_proj_k_weight, shape=[512, 512]), Tensor(name=decoder_mid_block_attentions_0_attention_proj_k_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 4096, 512])) 
+= gemm_rcr_bias()(
+Tensor(name=None, shape=[1, 4096, 512]), Tensor(name=decoder_mid_block_attentions_0_attention_proj_v_weight, shape=[512, 512]), Tensor(name=decoder_mid_block_attentions_0_attention_proj_v_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 4096, 1, 512])) 
+= reshape()(
+Tensor(name=None, shape=[1, 4096, 512]), shape=[1, 4096, 1, 512])
+
+# None
+(Tensor(name=None, shape=[1, 4096, 1, 512])) 
+= reshape()(
+Tensor(name=None, shape=[1, 4096, 512]), shape=[1, 4096, 1, 512])
+
+# None
+(Tensor(name=None, shape=[1, 4096, 1, 512])) 
+= reshape()(
+Tensor(name=None, shape=[1, 4096, 512]), shape=[1, 4096, 1, 512])
+
+# None
+(Tensor(name=None, shape=[1, 1, 4096, 512])) 
+= permute0213()(
+Tensor(name=None, shape=[1, 4096, 1, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 1, 4096, 512])) 
+= permute0213()(
+Tensor(name=None, shape=[1, 4096, 1, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 1, 4096, 512])) 
+= permute0213()(
+Tensor(name=None, shape=[1, 4096, 1, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 4096, 1, 512])) 
+= mem_eff_attention(causal=False)(
+Tensor(name=None, shape=[1, 1, 4096, 512]), Tensor(name=None, shape=[1, 1, 4096, 512]), Tensor(name=None, shape=[1, 1, 4096, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 4096, 512])) 
+= reshape()(
+Tensor(name=None, shape=[1, 4096, 1, 512]), shape=[1, 4096, 512])
+
+# None
+(Tensor(name=None, shape=[1, 4096, 512])) 
+= gemm_rcr_bias_add()(
+Tensor(name=None, shape=[1, 4096, 512]),
+Tensor(name=decoder_mid_block_attentions_0_attention_proj_weight, shape=[512, 512]),
+Tensor(name=decoder_mid_block_attentions_0_attention_proj_bias, shape=[512]),
+Tensor(name=None, shape=[1, 64, 64, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 4096, 512])) 
+= reshape()(
+Tensor(name=None, shape=[1, 4096, 512]), shape=[1, 4096, 512])
+
+# None
+(Tensor(name=None, shape=[1, 4096, 512])) 
+= elementwise(func=FuncEnum.MUL)(
+Tensor(name=None, shape=[1, 4096, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= reshape()(
+Tensor(name=None, shape=[1, 4096, 512]), shape=[1, 64, 64, 512])
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_mid_block_resnets_1_norm1_weight, shape=[512]), Tensor(name=decoder_mid_block_resnets_1_norm1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_mid_block_resnets_1_conv1_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_mid_block_resnets_1_conv1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_mid_block_resnets_1_norm2_weight, shape=[512]), Tensor(name=decoder_mid_block_resnets_1_norm2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_mid_block_resnets_1_conv2_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_mid_block_resnets_1_conv2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=None, shape=[1, 64, 64, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_0_norm1_weight, shape=[512]), Tensor(name=decoder_up_blocks_0_resnets_0_norm1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_0_conv1_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_0_resnets_0_conv1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_0_norm2_weight, shape=[512]), Tensor(name=decoder_up_blocks_0_resnets_0_norm2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_0_conv2_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_0_resnets_0_conv2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=None, shape=[1, 64, 64, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_1_norm1_weight, shape=[512]), Tensor(name=decoder_up_blocks_0_resnets_1_norm1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_1_conv1_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_0_resnets_1_conv1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_1_norm2_weight, shape=[512]), Tensor(name=decoder_up_blocks_0_resnets_1_norm2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_1_conv2_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_0_resnets_1_conv2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=None, shape=[1, 64, 64, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_2_norm1_weight, shape=[512]), Tensor(name=decoder_up_blocks_0_resnets_2_norm1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_2_conv1_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_0_resnets_2_conv1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_2_norm2_weight, shape=[512]), Tensor(name=decoder_up_blocks_0_resnets_2_norm2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=decoder_up_blocks_0_resnets_2_conv2_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_0_resnets_2_conv2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 64, 64, 512])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 64, 64, 512]), Tensor(name=None, shape=[1, 64, 64, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= upsampling2d(mode=nearest, scale_factor=2.0)(
+Tensor(name=None, shape=[1, 64, 64, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_0_upsamplers_0_conv_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_0_upsamplers_0_conv_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_0_norm1_weight, shape=[512]), Tensor(name=decoder_up_blocks_1_resnets_0_norm1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_0_conv1_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_1_resnets_0_conv1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_0_norm2_weight, shape=[512]), Tensor(name=decoder_up_blocks_1_resnets_0_norm2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_0_conv2_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_1_resnets_0_conv2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=None, shape=[1, 128, 128, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_1_norm1_weight, shape=[512]), Tensor(name=decoder_up_blocks_1_resnets_1_norm1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_1_conv1_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_1_resnets_1_conv1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_1_norm2_weight, shape=[512]), Tensor(name=decoder_up_blocks_1_resnets_1_norm2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_1_conv2_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_1_resnets_1_conv2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=None, shape=[1, 128, 128, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_2_norm1_weight, shape=[512]), Tensor(name=decoder_up_blocks_1_resnets_2_norm1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_2_conv1_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_1_resnets_2_conv1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_2_norm2_weight, shape=[512]), Tensor(name=decoder_up_blocks_1_resnets_2_norm2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=decoder_up_blocks_1_resnets_2_conv2_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_1_resnets_2_conv2_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 128, 128, 512])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 128, 128, 512]), Tensor(name=None, shape=[1, 128, 128, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 512])) 
+= upsampling2d(mode=nearest, scale_factor=2.0)(
+Tensor(name=None, shape=[1, 128, 128, 512]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 512])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 256, 256, 512]), Tensor(name=decoder_up_blocks_1_upsamplers_0_conv_weight, shape=[512, 3, 3, 512]), Tensor(name=decoder_up_blocks_1_upsamplers_0_conv_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 512])) 
+= groupnorm_swish(num_groups=32, num_channels=512)(
+Tensor(name=None, shape=[1, 256, 256, 512]), Tensor(name=decoder_up_blocks_2_resnets_0_norm1_weight, shape=[512]), Tensor(name=decoder_up_blocks_2_resnets_0_norm1_bias, shape=[512]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= conv2d_bias(dilate=1, group=1, pad=0, stride=1)(
+Tensor(name=None, shape=[1, 256, 256, 512]), Tensor(name=decoder_up_blocks_2_resnets_0_conv_shortcut_weight, shape=[256, 1, 1, 512]), Tensor(name=decoder_up_blocks_2_resnets_0_conv_shortcut_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 256, 256, 512]), Tensor(name=decoder_up_blocks_2_resnets_0_conv1_weight, shape=[256, 3, 3, 512]), Tensor(name=decoder_up_blocks_2_resnets_0_conv1_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= groupnorm_swish(num_groups=32, num_channels=256)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_0_norm2_weight, shape=[256]), Tensor(name=decoder_up_blocks_2_resnets_0_norm2_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_0_conv2_weight, shape=[256, 3, 3, 256]), Tensor(name=decoder_up_blocks_2_resnets_0_conv2_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=None, shape=[1, 256, 256, 256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= groupnorm_swish(num_groups=32, num_channels=256)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_1_norm1_weight, shape=[256]), Tensor(name=decoder_up_blocks_2_resnets_1_norm1_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_1_conv1_weight, shape=[256, 3, 3, 256]), Tensor(name=decoder_up_blocks_2_resnets_1_conv1_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= groupnorm_swish(num_groups=32, num_channels=256)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_1_norm2_weight, shape=[256]), Tensor(name=decoder_up_blocks_2_resnets_1_norm2_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_1_conv2_weight, shape=[256, 3, 3, 256]), Tensor(name=decoder_up_blocks_2_resnets_1_conv2_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=None, shape=[1, 256, 256, 256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= groupnorm_swish(num_groups=32, num_channels=256)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_2_norm1_weight, shape=[256]), Tensor(name=decoder_up_blocks_2_resnets_2_norm1_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_2_conv1_weight, shape=[256, 3, 3, 256]), Tensor(name=decoder_up_blocks_2_resnets_2_conv1_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= groupnorm_swish(num_groups=32, num_channels=256)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_2_norm2_weight, shape=[256]), Tensor(name=decoder_up_blocks_2_resnets_2_norm2_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=decoder_up_blocks_2_resnets_2_conv2_weight, shape=[256, 3, 3, 256]), Tensor(name=decoder_up_blocks_2_resnets_2_conv2_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 256, 256, 256])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 256, 256, 256]), Tensor(name=None, shape=[1, 256, 256, 256]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 256])) 
+= upsampling2d(mode=nearest, scale_factor=2.0)(
+Tensor(name=None, shape=[1, 256, 256, 256]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 256])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 512, 512, 256]), Tensor(name=decoder_up_blocks_2_upsamplers_0_conv_weight, shape=[256, 3, 3, 256]), Tensor(name=decoder_up_blocks_2_upsamplers_0_conv_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 256])) 
+= groupnorm_swish(num_groups=32, num_channels=256)(
+Tensor(name=None, shape=[1, 512, 512, 256]), Tensor(name=decoder_up_blocks_3_resnets_0_norm1_weight, shape=[256]), Tensor(name=decoder_up_blocks_3_resnets_0_norm1_bias, shape=[256]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= conv2d_bias(dilate=1, group=1, pad=0, stride=1)(
+Tensor(name=None, shape=[1, 512, 512, 256]), Tensor(name=decoder_up_blocks_3_resnets_0_conv_shortcut_weight, shape=[128, 1, 1, 256]), Tensor(name=decoder_up_blocks_3_resnets_0_conv_shortcut_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 512, 512, 256]), Tensor(name=decoder_up_blocks_3_resnets_0_conv1_weight, shape=[128, 3, 3, 256]), Tensor(name=decoder_up_blocks_3_resnets_0_conv1_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= groupnorm_swish(num_groups=32, num_channels=128)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_0_norm2_weight, shape=[128]), Tensor(name=decoder_up_blocks_3_resnets_0_norm2_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_0_conv2_weight, shape=[128, 3, 3, 128]), Tensor(name=decoder_up_blocks_3_resnets_0_conv2_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=None, shape=[1, 512, 512, 128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= groupnorm_swish(num_groups=32, num_channels=128)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_1_norm1_weight, shape=[128]), Tensor(name=decoder_up_blocks_3_resnets_1_norm1_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_1_conv1_weight, shape=[128, 3, 3, 128]), Tensor(name=decoder_up_blocks_3_resnets_1_conv1_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= groupnorm_swish(num_groups=32, num_channels=128)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_1_norm2_weight, shape=[128]), Tensor(name=decoder_up_blocks_3_resnets_1_norm2_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_1_conv2_weight, shape=[128, 3, 3, 128]), Tensor(name=decoder_up_blocks_3_resnets_1_conv2_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=None, shape=[1, 512, 512, 128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= groupnorm_swish(num_groups=32, num_channels=128)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_2_norm1_weight, shape=[128]), Tensor(name=decoder_up_blocks_3_resnets_2_norm1_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_2_conv1_weight, shape=[128, 3, 3, 128]), Tensor(name=decoder_up_blocks_3_resnets_2_conv1_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= groupnorm_swish(num_groups=32, num_channels=128)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_2_norm2_weight, shape=[128]), Tensor(name=decoder_up_blocks_3_resnets_2_norm2_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_up_blocks_3_resnets_2_conv2_weight, shape=[128, 3, 3, 128]), Tensor(name=decoder_up_blocks_3_resnets_2_conv2_bias, shape=[128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= elementwise(func=FuncEnum.ADD)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=None, shape=[1, 512, 512, 128]))
+
+# None
+(Tensor(name=None, shape=[1, 512, 512, 128])) 
+= groupnorm_swish(num_groups=32, num_channels=128)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_conv_norm_out_weight, shape=[128]), Tensor(name=decoder_conv_norm_out_bias, shape=[128]))
+
+# None
+(Tensor(name=output_0, shape=[1, 512, 512, 3])) 
+= conv2d_bias(dilate=1, group=1, pad=1, stride=1)(
+Tensor(name=None, shape=[1, 512, 512, 128]), Tensor(name=decoder_conv_out_weight, shape=[3, 3, 3, 128]), Tensor(name=decoder_conv_out_bias, shape=[3]))
