@@ -1,0 +1,19 @@
+# unsqueeze_0
+(Tensor(name=unsqueeze_0_0, shape=[512, 3, 1, 80])) 
+= unsqueeze(dim=2)(
+Tensor(name=conv1d_weight, shape=[512, 3, 80]))
+
+# unsqueeze_1
+(Tensor(name=unsqueeze_1_0, shape=[4, 28, 1, 80])) 
+= unsqueeze(dim=2)(
+Tensor(name=input_0, shape=[4, 28, 80]))
+
+# conv2d_bias_2
+(Tensor(name=conv2d_bias_2_0, shape=[4, 28, 1, 512])) 
+= conv2d_bias(dilate=(1, 1), group=1, pad=(1, 0), stride=(1, 1))(
+Tensor(name=unsqueeze_1_0, shape=[4, 28, 1, 80]), Tensor(name=unsqueeze_0_0, shape=[512, 3, 1, 80]), Tensor(name=conv1d_bias, shape=[512]))
+
+# squeeze_3
+(Tensor(name=output_0, shape=[4, 28, 512])) 
+= squeeze(dim=2)(
+Tensor(name=conv2d_bias_2_0, shape=[4, 28, 1, 512]))
